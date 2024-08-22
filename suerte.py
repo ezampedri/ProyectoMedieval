@@ -35,6 +35,3 @@ def tirada():
         return True
     else:
         return False
-    
-print(tirada())
-    

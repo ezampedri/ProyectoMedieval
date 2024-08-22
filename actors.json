@@ -1,0 +1,30 @@
+{
+    "heroe": {
+        "nombre": "Aiken",
+        "hp": 270,
+        "atk": 10,
+        "def": 5,
+        "lk": 10,
+        "habilidades": ["curar"]
+    },
+    "enemigos": [
+        {
+            "nombre": "Goblin",
+            "hp": 100,
+            "atk": 5,
+            "def": 2
+        },
+        {
+            "nombre": "Orco",
+            "hp": 200,
+            "atk": 15,
+            "def": 7
+        },
+        {
+            "nombre": "Drafnakk, Tirano de Gyanavall",
+            "hp": 500,
+            "atk": 25,
+            "def": 10
+        }
+    ]
+}
