@@ -1,7 +1,8 @@
 import random as r
+import json
 
 #el stat de suerte puede ser ligado a un stat dentro de un diccionario que represente las estadísticas del actor en el juego
-suerte = 20
+suerte = 90
 impares = (1, 3, 5, 7, 9)
 pares = (2, 4, 6, 8)
 #función lambda para tomar un elemento random de una lista, esto es una función de random pero no tenemos permitido usarla
@@ -35,3 +36,5 @@ def tirada():
         return True
     else:
         return False
+    
+print(tirada())
