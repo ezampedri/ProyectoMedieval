@@ -1,6 +1,8 @@
 import random as r
 import json
 import suerte
+import os
+
 
 
 #el json trae a los enemigos desde la 'base de datos'
@@ -38,6 +40,7 @@ def ac_evade(actor):
     dado = suerte.tirada(actor.get('agi'))
     return dado
 
+
 def ac_ataque(actor, vs):
     if 'arma' in actor:
         golpe = actor['atk'] * ((actor['arma']/10) + 1)
@@ -54,14 +57,22 @@ def ac_ataque(actor, vs):
             print(f"{actor.get('nombre')} falló el ataque.")
 
 #para la magia va a ser un poco más complicado, se tienen que pasar el argumento del heroe, el vs, y la magia en cuestión
-def magia(actor, vs, habilidad):
+def ac_magia(actor, vs, habilidad):
     with open('ablt.json', 'r') as file:
         data = json.load(file)['habilidades']
-    #m de magia, no de m de momazos
     for m in data:
         if m['nombre'] == habilidad:
             daño = m['atk'] * actor['mag']
             vs['hp'] -= daño
             print(f"{actor['nombre']} lanzó {habilidad} sobre {vs['nombre']} por un total de {daño} de hp")
 
-magia(heroe, enemigo, 'fuego')
+#función para mostrar el cuadro con la vida actual del personaje y la del contrincante
+def interfaz(heroe, enemigo):
+    os.system('cls')
+    print("="*42)
+    print(f"{heroe['nombre']:^20} | {enemigo['nombre']:^20}")
+    print("-" * 42)
+    print(f"HP: {heroe['hp']:<17} | HP: {enemigo['hp']:<20}")
+    print(f"MP: {heroe['mp']:<17} | MP: {enemigo.get('mp', 'N/A'):<20}")
+    print("===================================")
+
