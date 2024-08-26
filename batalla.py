@@ -15,12 +15,14 @@ contrincante = r.choice(enemigo)
 heroe = {
         'nombre': 'Aiken',
         "hp": 270,
+        "mp": 40,
         "atk": 10,
+        "mag": 5,
         "agi": 20,
         "def": 5,
         "lk": suerte.suerte,
         "arma": 10,
-        "habilidades": ["curar"]
+        "habilidades": ["curar", "fuego"]
 }
 
 enemigo = {
@@ -51,5 +53,15 @@ def ac_ataque(actor, vs):
         else:
             print(f"{actor.get('nombre')} falló el ataque.")
 
+#para la magia va a ser un poco más complicado, se tienen que pasar el argumento del heroe, el vs, y la magia en cuestión
+def magia(actor, vs, habilidad):
+    with open('ablt.json', 'r') as file:
+        data = json.load(file)['habilidades']
+    #m de magia, no de m de momazos
+    for m in data:
+        if m['nombre'] == habilidad:
+            daño = m['atk'] * actor['mag']
+            vs['hp'] -= daño
+            print(f"{actor['nombre']} lanzó {habilidad} sobre {vs['nombre']} por un total de {daño} de hp")
 
-
+magia(heroe, enemigo, 'fuego')
