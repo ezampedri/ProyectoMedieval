@@ -8,7 +8,7 @@
         "def": 5,
         "lk": 10,
         "exp": 0,
-        "habilidades": ["curar"]
+        "habilidades": ["Rejuvenecer"]
     },
     {
         "nombre": "Guerrero",
@@ -19,7 +19,7 @@
         "def": 10,
         "lk": 10,
         "exp": 0,
-        "habilidades": ["cuerpo a cuerpo"]
+        "habilidades": ["Corte Dimensional", "Disparo Penetrante"]
     },
     {
         "nombre": "Mago",
@@ -30,7 +30,7 @@
         "def": 5,
         "lk": 20,
         "exp": 0,
-        "habilidades": ["cuerpo a cuerpo o distancia"]
+        "habilidades": ["Bola de fuego"]
     },
     {
         "nombre": "Arquera",
@@ -41,7 +41,7 @@
         "def": 5,
         "lk": 20,
         "exp": 0,
-        "habilidades": ["cuerpo a cuerpo o distancia"]
+        "habilidades": ["Disparo Penetrante"]
     }
     ],
     "enemigos": [
