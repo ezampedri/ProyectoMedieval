@@ -1,6 +1,9 @@
 # Proyecto juego RPG Medieval
 
 TP Programacion 1- UADE
+<p align="left">
+<img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
+</p>
 --------------------------------------------------------------------------------------
 
 El objetivo del trabajo practico es aplicar los conocimientos de Python vistos durante la cursada.
