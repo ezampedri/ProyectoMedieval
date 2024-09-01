@@ -1,6 +1,7 @@
 {
     "heroe": [{
-        "nombre": "Druida",
+        "nombre": "Gandalf",
+        "clase":"Healer",
         "hp": 270,
         "mp": 40,
         "atk": 10,
@@ -11,7 +12,8 @@
         "habilidades": ["Rejuvenecer"]
     },
     {
-        "nombre": "Guerrero",
+        "nombre": "Aragorn",
+        "clase":"Guerrero",
         "hp": 350,
         "mp": 25,
         "atk": 20,
@@ -22,7 +24,8 @@
         "habilidades": ["Corte Dimensional", "Disparo Penetrante"]
     },
     {
-        "nombre": "Mago",
+        "nombre": "Morgana",
+        "clase":"Maga",
         "hp": 250,
         "mp": 50,
         "atk": 5,
@@ -33,7 +36,8 @@
         "habilidades": ["Bola de fuego"]
     },
     {
-        "nombre": "Arquera",
+        "nombre": "Legolas",
+        "clase":"Arquero",
         "hp": 250,
         "mp": 50,
         "atk": 5,
