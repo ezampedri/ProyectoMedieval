@@ -54,7 +54,6 @@ def ac_magia(actor, vs, habilidad):
             print(f"{actor['nombre']} lanzó {habilidad} sobre {vs['nombre']} por un total de {daño} de hp")
 
 def interfaz(heroe, enemigo):
-    os.system('cls')
     print("="*42)
     print(f"{heroe['nombre']:^20} | {enemigo['nombre']:^20}")
     print("-" * 42)
@@ -94,7 +93,7 @@ def acc(heroe):
 
 def acc_ai(enemigo):
     acciones = ['atacar']
-    #recordar que acá necesito sofisticar un poco el sistema de batalla para que algunas acciones tengan más chances de suceder que otras
+    #recordar que acá necesito sofisticar un poco la ia para que algunas acciones tengan más chances de suceder que otras
     eleccion = r.choice(acciones)
     if eleccion == 'atacar':
         ac_ataque(enemigo, heroe)
@@ -105,8 +104,11 @@ def batalla(heroe, enemigo):
         interfaz(heroe, enemigo)
         acc(heroe)
         input('----->')
+        os.system('cls')
+        interfaz(heroe, enemigo)
         acc_ai(enemigo)
         input('----->')
+        os.system('cls')
         
         
 
