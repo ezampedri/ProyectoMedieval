@@ -1,4 +1,4 @@
-{
+champions = {
     "heroe": [{
         "nombre": "Gandalf",
         "clase":"Healer",

@@ -1,4 +1,4 @@
-[{
+habilidades = {
     "nombre": "Rejuvenecer",
     "descripcion": "Restañe la carne y sana los dolores, lo que las farmacéuticas no quieren que sepas.",
     "atk": 1.5,
@@ -21,6 +21,6 @@
     "descripcion": "Carga una potente flecha con magia elfica para potenciar su efecto, no te interpongas en el camino.",
     "atk": 7,
     "cost": 5
-}]
+}
 
 
