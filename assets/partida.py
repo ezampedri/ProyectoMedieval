@@ -5,6 +5,15 @@ partida=[
 ]
 
 def mostrarMenuPersonajes():
+    """
+    Muestra mediante carteles una lista de champions, simulando un menu en terminal
+    
+    Parámetros:
+    No tiene
+
+    Devuelve:
+    cartel en pantalla con el nombre de cada champion
+    """
     print("1. Healer")
     print("2. Guerrero")
     print("3. Maga")
@@ -13,13 +22,22 @@ def mostrarMenuPersonajes():
 
 
 def detallePersonaje(personajeSeleccionado):
+    """
+    Devuelve la informacion detalla de un champion
+    
+    Parámetros:
+    personajeSeleccionado (string): El personaje seleccionado por el usuario.
+
+    Devuelve:
+    cartel en pantalla con la informacion del champion
+    """
     for personaje in champions:
         if champions['nombre']==personajeSeleccionado:
             print(personaje)
     
 
 
-
+#programa principal
 partida=True
 
 while partida:
