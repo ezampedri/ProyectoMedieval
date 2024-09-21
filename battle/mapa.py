@@ -1,13 +1,14 @@
 import random
+import keyboard
 
 def armadoDeMapa(filas, columnas):
     #Se llena la matriz FxC con '.' lo que representa el piso del mapa
     mapa = [['.' for _ in range(columnas)] for _ in range(filas)] 
 
     #Calculo de arboles (A) y paredes (P) para agregar
-    cantidadArboles = (filas * columnas) // 10
-    cantidadParedes = (filas * columnas) // 10
-    cantidadContrincantes=2
+    cantidadArboles = (filas * columnas) // 5
+    cantidadParedes = (filas * columnas) // 5
+    cantidadContrincantes=5
     cantidadSalidas=1
 
     contadorArbolesColocados=0
@@ -37,12 +38,29 @@ def armadoDeMapa(filas, columnas):
             contadorContrincantesColocados+=1
 
     #Se colocan los salidas en posiciones random (x,y) que no coincidan con otros arboles, pared, contrincante o posicion x,y=(0,0) donde inicia el Heroe
+    salida = (0, 0)
     while contadorSalidasColocadas < cantidadSalidas:
         x, y = random.randint(filas//2, filas-1), random.randint(0, columnas-1)
         if (x, y) != (0, 0) and mapa[x][y] == '.':  
             mapa[x][y] = 'S'
+            salida = (x, y)
             contadorSalidasColocadas+=1
 
+    #Camino seguro: Se quitan obstaculos para que el Heroe tenga acceso a la salida y esta no quede bloqueada
+    caminoSeguro = (0, 0)
+    xSalida, ySalida = salida[0], salida[1]
+    while caminoSeguro < salida:
+        x, y = caminoSeguro[0], caminoSeguro[1]
+        if x < xSalida:
+            x += 1
+            if mapa[x][y] != 'S':
+                mapa[x][y] = '.'
+        elif y < ySalida:
+            y += 1
+            if mapa[x][y] != 'S':
+                mapa[x][y] = '.'
+        caminoSeguro = (x, y)
+        
     return mapa
 
 
@@ -51,9 +69,9 @@ def imprimirMapa(mapa, posicionHeroe):
     for i, fila in enumerate(mapa):
         for j, columna in enumerate(fila):
             if (i, j) == posicionHeroe:
-                print("H", end=" ")
+                print('H', end=' ')
             else:
-                print(columna, end=" ")
+                print(columna, end=' ')
         print()
 
 
@@ -99,11 +117,12 @@ def movimientoHeroe(mapa, posicion):
         return posicion
 
 
-# Ejemplo de uso:
-mapa = armadoDeMapa(5, 5)
-posicionHeroe = (0, 0)
+#Iniciar mapa 
+def iniciarMapa():
+    mapa = armadoDeMapa(10, 10)
+    posicionHeroe = (0, 0)
 
-while True:
-    imprimirMapa(mapa, posicionHeroe)
-    posicionHeroe = movimientoHeroe(mapa, posicionHeroe)
-    controlDePosicion(mapa, posicionHeroe)
+    while True:
+        imprimirMapa(mapa, posicionHeroe)
+        posicionHeroe = movimientoHeroe(mapa, posicionHeroe)
+        controlDePosicion(mapa, posicionHeroe)
