@@ -4,8 +4,6 @@ partida=[
 
 ]
 
-personajeDePartida = ''
-
 def mostrarMenuPersonajes():
     """
     Muestra mediante carteles una lista de champions, simulando un menu en terminal
@@ -65,9 +63,8 @@ def seleccionarPersonaje(personajeElegido):
     Devuelve:
     Da de alta en la lista el personaje
     """
-    
     personajeDePartida=personajeElegido
-    partida.append(personajeElegido)
+    partida.append(personajeDePartida)
 
 
 
