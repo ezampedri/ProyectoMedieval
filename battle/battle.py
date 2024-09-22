@@ -2,6 +2,8 @@ import random as r
 import json
 import suerte
 import os
+import time as tm
+import sys
 
 heroe = {
     'nombre': 'Aiken',
@@ -25,6 +27,13 @@ enemigo = {
     "lk": 20
 }
 
+def generar_texto(texto, velocidad= 0.02):
+    for caracter in texto:
+        sys.stdout.write(caracter)
+        sys.stdout.flush()
+        tm.sleep(velocidad)
+    print()
+
 def ac_evade(actor, vs):
     probabilidad_evade = actor['agi'] - vs['agi']  # Comparar agilidad entre ambos
     return r.randint(0, 100) < probabilidad_evade  # Si es menor que el umbral, esquiva
@@ -40,7 +49,7 @@ def calcular_daño(actor, vs):
     critico = r.choice([1.5, 1.75, 2.0])  # Valores posibles para ataque crítico
     
     if r.randint(0, 100) < actor['lk']:  # Probabilidad de crítico basada en la suerte
-        print(f"¡Ataque crítico de {actor['nombre']}!, ¡esto va a doler!")
+        generar_texto(f"¡Ataque crítico de {actor['nombre']}!, ¡esto va a doler!",0.03)
         daño_base *= critico  # Aplicamos el multiplicador de crítico
     
     # Daño neto después de aplicar la defensa del enemigo
@@ -53,19 +62,16 @@ def ac_ataque(actor, vs):
     
     if daño is None:  # Verificación extra para asegurar que no sea None
         daño = 0
-    
-    print(f'¡{actor["nombre"]} lanza un ataque con {daño} de daño potencial!')
-
     # Verifica si el oponente esquiva
     if ac_evade(vs, actor):
-        print(f"{vs['nombre']} esquivó el ataque de {actor['nombre']}!")
+        generar_texto(f"{vs['nombre']} esquivó el ataque de {actor['nombre']}!")
     else:
         # Comprueba si el ataque conecta, basándose en la suerte del actor
         if suerte.tirada(actor['lk'] + 50):  # Modifica la probabilidad de acierto
             vs['hp'] -= daño  # Asegurarse que `daño` es un número válido
-            print(f"El ataque de {actor['nombre']} conectó e infligió {daño} de daño a {vs['nombre']}.")
+            generar_texto(f"El ataque de {actor['nombre']} conectó e infligió {daño} de daño a {vs['nombre']}.")
         else:
-            print(f"{actor['nombre']} falló el ataque.")
+            generar_texto(f"{actor['nombre']} falló el ataque.")
 
 def ac_magia(actor, vs, habilidad):
     with open('../ProyectoMedieval/assets/habilidades.json', 'r') as file:
@@ -95,7 +101,8 @@ def acc(heroe):
     print(f"Habilidades")
     print(f"Evadir")
     print(f"Escapar")
-    user = input("¡Tomá el destino en tus manos! ").lower()
+    generar_texto("¡Toma el destino en tus manos!")
+    user = input().lower()
     if user == "atacar":
         ac_ataque(heroe, enemigo)
     elif user == "habilidades":
@@ -106,14 +113,14 @@ def acc(heroe):
         if user in heroe['habilidades']:
             ac_magia(heroe, enemigo, user)
         else:
-            print(f'Ese conjuro no forma parte del conocimiento de {heroe["nombre"]}')
+            generar_texto(f'Ese conjuro no forma parte del conocimiento de {heroe["nombre"]}')
     elif user == "evadir":
-        print(f'{heroe["nombre"]} ¡se prepara para evadir el próximo ataque!')
+        generar_texto(f'{heroe["nombre"]} ¡se prepara para evadir el próximo ataque!')
         heroe['agi'] *= 2  # Dobla la agilidad temporalmente
     elif user == 'escapar':
         escape()
     else:
-        print('No se reconoce el comando!')
+        generar_texto('No se reconoce el comando!')
 
 #función que maneja todos los ataques del enemigo.
 def acc_ai(enemigo):
@@ -135,11 +142,11 @@ def batalla(heroe, enemigo):
     while heroe['hp'] > 0 and enemigo['hp'] > 0:
         interfaz(heroe, enemigo)
         acc(heroe)
-        input('----->')
+        tm.sleep(1.5)
         os.system('cls')
         interfaz(heroe, enemigo)
         acc_ai(enemigo)
-        input('----->')
+        tm.sleep(1.5)
         os.system('cls')
     if enemigo['hp'] <= 0:
         recompensa = {
@@ -152,7 +159,5 @@ def batalla(heroe, enemigo):
             'xp' : 0
         }
     return recompensa
-
-
 
 batalla(heroe, enemigo)
