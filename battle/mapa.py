@@ -1,5 +1,4 @@
 import random
-import keyboard
 
 def armadoDeMapa(filas, columnas):
     #Se llena la matriz FxC con '.' lo que representa el piso del mapa
