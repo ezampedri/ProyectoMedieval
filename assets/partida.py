@@ -76,7 +76,7 @@ while partida:
     print('---------------------')
     print('- Proyecto Medieval -')
     print('---------------------')
-    opcion=int(input("Ingrese la opcion para ver los personajes\n"))
+    opcion=int(input("Ingrese la opcion para ver los personajes:\n"))
     print('---------------------')
 
     if opcion==5:
