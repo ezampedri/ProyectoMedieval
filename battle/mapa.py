@@ -1,4 +1,5 @@
 import random
+import keyboard
 
 def armadoDeMapa(filas, columnas):
     #Se llena la matriz FxC con '.' lo que representa el piso del mapa
@@ -87,33 +88,36 @@ def controlDePosicion(mapa, posicion):
 #Movimiento del Heroe por el mapa
 def movimientoHeroe(mapa, posicion):
     filas, columnas = len(mapa), len(mapa[0])
+    move=''
 
     movimientos = {
         'w': (-1, 0),  # Arriba
-        's': (1, 0),   # Abajo
         'a': (0, -1),  # Izquierda
+        's': (1, 0),   # Abajo
         'd': (0, 1)    # Derecha
     }
 
-    print("Moverse: w=arriba, s=abajo, a=izquierda, d=derecha")
-    move = input("Elige un movimiento: ").lower()
+    print("Moverse: w=arriba, a=izquierda, s=abajo, d=derecha")
 
-    if move in movimientos:
-        nuevaPosicion = (posicion[0] + movimientos[move][0], posicion[1] + movimientos[move][1])
-        
-        # Control de posición para evitar salir del mapa o moverse a un obstáculo
-        if 0 <= nuevaPosicion[0] < filas and 0 <= nuevaPosicion[1] < columnas:
-            if mapa[nuevaPosicion[0]][nuevaPosicion[1]] not in ['A', 'P']:
-                return nuevaPosicion
+    while move != 'w' and 'a' and 's' and 'd':    
+        eventoTecla = keyboard.read_event()
+
+        if eventoTecla.event_type == 'down':
+            move = eventoTecla.name.lower()
+
+            if move in movimientos:
+                nuevaPosicion = (posicion[0] + movimientos[move][0], posicion[1] + movimientos[move][1])
+                
+                # Control de posición para evitar salir del mapa o moverse a un obstáculo
+                if 0 <= nuevaPosicion[0] < filas and 0 <= nuevaPosicion[1] < columnas:
+                    if mapa[nuevaPosicion[0]][nuevaPosicion[1]] not in ['A', 'P']:
+                        return nuevaPosicion
+                    else:
+                        print("¡Hay un obstaculo!")
+                else:
+                    print("¡No puedes salir del mapa!")
             else:
-                print("¡Hay un obstaculo!")
-                return posicion
-        else:
-            print("¡No puedes salir del mapa!")
-            return posicion
-    else:
-        print("Movimiento invalido")
-        return posicion
+                print("Movimiento invalido")
 
 
 #Iniciar mapa 
