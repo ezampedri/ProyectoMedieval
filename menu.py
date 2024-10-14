@@ -1,5 +1,4 @@
 from battle import mapa
-print("\U000026E9")
 
 while True:
     print('---------------------')

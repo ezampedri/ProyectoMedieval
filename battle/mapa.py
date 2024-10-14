@@ -1,5 +1,7 @@
 import random
 import keyboard
+from battle import battle
+from assets import champions
 
 # U0001F7EB es tierra
 # U0001F47D es heroe
@@ -7,8 +9,6 @@ import keyboard
 # U0001F9F1 es pared
 # U0001F333 es arbol
 # U0001F532 es salida
-
-
 
 def armadoDeMapa(filas, columnas):
     #Se llena la matriz FxC con '.' lo que representa el piso del mapa
@@ -88,6 +88,13 @@ def imprimirMapa(mapa, posicionHeroe):
 def controlDePosicion(mapa, posicion):
     if mapa[posicion[0]][posicion[1]] == '\U0001F480':
         print("¡Has encontrado un contrincante! ¡Preparate para la batalla!")
+        recompensa = battle.batalla(random.choice(champions.champions['heroe']), random.choice(champions.champions['enemigos']))
+        
+        if recompensa['victoria'] == True:
+            mapa[posicion[0]][posicion[1]] = '\U0001F7EB'
+        else:
+            print("¡El mundo media ha caído!")
+
 
     if mapa[posicion[0]][posicion[1]] == '\U0001F532':
         print("¡Has alcanzado la salida! Nivel completado.")
