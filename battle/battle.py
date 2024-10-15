@@ -1,30 +1,10 @@
 import random as r
 import json
-import suerte
-
+from assets import suerte
+import os
+import time as tm
 import sys
 
-heroe = {
-    'nombre': 'Aiken',
-    "hp": 270,
-    "mp": 40,
-    "atk": 10,
-    "mag": 5,
-    "agi": 20,
-    "def": 5,
-    "lk": suerte.suerte,
-    "arma": 10,
-    "habilidades": ["Rejuvenecer", "Bola de fuego"]
-}
-
-enemigo = {
-    "nombre": "Orco",
-    "hp": 200,
-    "atk": 15,
-    "def": 7,
-    "agi": 20,
-    "lk": 20
-}
 
 def generar_texto(texto, velocidad= 0.02):
     for caracter in texto:
@@ -89,12 +69,12 @@ def interfaz(heroe, enemigo):
     print(f"MP: {heroe['mp']:<17} | MP: {enemigo.get('mp', 'N/A'):<20}")
     print("===================================")
 
-def escape():
+def escape(heroe):
     escapada = suerte.tirada((suerte.suerte // 2) + heroe['agi'])
     return escapada
 
 #función que maneja todas las acciones posibles del jugador.
-def acc(heroe):
+def acc(heroe, enemigo):
     print(f"Escribe tu acción! \n\n")
     print(f"Atacar")
     print(f"Habilidades")
@@ -117,12 +97,12 @@ def acc(heroe):
         generar_texto(f'{heroe["nombre"]} ¡se prepara para evadir el próximo ataque!')
         heroe['agi'] *= 2  # Dobla la agilidad temporalmente
     elif user == 'escapar':
-        escape()
+        escape(heroe)
     else:
         generar_texto('No se reconoce el comando!')
 
 #función que maneja todos los ataques del enemigo.
-def acc_ai(enemigo):
+def acc_ai(enemigo, heroe):
     acciones = ['atacar']
     media_vida = enemigo['hp'] //2
     # Si el enemigo tiene la habilidad 'curar' y su HP es menor a 50, agregar la opción de curar
@@ -140,11 +120,11 @@ def acc_ai(enemigo):
 def batalla(heroe, enemigo):
     while heroe['hp'] > 0 and enemigo['hp'] > 0:
         interfaz(heroe, enemigo)
-        acc(heroe)
+        acc(heroe, enemigo)
         tm.sleep(1.5)
         os.system('cls')
         interfaz(heroe, enemigo)
-        acc_ai(enemigo)
+        acc_ai(enemigo, heroe)
         tm.sleep(1.5)
         os.system('cls')
     if enemigo['hp'] <= 0:
@@ -158,5 +138,3 @@ def batalla(heroe, enemigo):
             'xp' : 0
         }
     return recompensa
-
-batalla(heroe, enemigo)

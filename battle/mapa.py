@@ -1,8 +1,18 @@
 import random
+import keyboard
+from battle import battle
+from assets import champions
+
+# U0001F7EB es tierra
+# U0001F47D es heroe
+# U0001F480 es contrincante
+# U0001F9F1 es pared
+# U0001F333 es arbol
+# U0001F532 es salida
 
 def armadoDeMapa(filas, columnas):
     #Se llena la matriz FxC con '.' lo que representa el piso del mapa
-    mapa = [['.' for _ in range(columnas)] for _ in range(filas)] 
+    mapa = [['\U0001F7EB' for _ in range(columnas)] for _ in range(filas)] 
 
     #Calculo de arboles (A) y paredes (P) para agregar
     cantidadArboles = (filas * columnas) // 5
@@ -18,30 +28,30 @@ def armadoDeMapa(filas, columnas):
     #Se colocan los arboles en posiciones random (x,y) que no coincidan con otros arboles, pared o posicion x,y=(0,0) donde inicia el Heroe 
     while contadorArbolesColocados < cantidadArboles:
         x, y = random.randint(0, filas-1), random.randint(0, columnas-1)
-        if (x, y) != (0, 0) and mapa[x][y] == '.':  
-            mapa[x][y] = 'A'
+        if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB':  
+            mapa[x][y] = '\U0001F333'
             contadorArbolesColocados+=1
             
     #Se colocan las paredes en posiciones random (x,y) que no coincidan con otros arboles, pared o posicion x,y=(0,0) donde inicia el Heroe
     while contadorParedesColocadas < cantidadParedes:
         x, y = random.randint(0, filas-1), random.randint(0, columnas-1)
-        if (x, y) != (0, 0) and mapa[x][y] == '.':  
-            mapa[x][y] = 'P'
+        if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB':  
+            mapa[x][y] = '\U0001F9F1'
             contadorParedesColocadas+=1
 
     #Se colocan los contrincantes en posiciones random (x,y) que no coincidan con otros arboles, pared o posicion x,y=(0,0) donde inicia el Heroe
     while contadorContrincantesColocados < cantidadContrincantes:
         x, y = random.randint(0, filas-1), random.randint(0, columnas-1)
-        if (x, y) != (0, 0) and mapa[x][y] == '.':  
-            mapa[x][y] = 'C'
+        if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB':  
+            mapa[x][y] = '\U0001F480'
             contadorContrincantesColocados+=1
 
     #Se colocan los salidas en posiciones random (x,y) que no coincidan con otros arboles, pared, contrincante o posicion x,y=(0,0) donde inicia el Heroe
     salida = (0, 0)
     while contadorSalidasColocadas < cantidadSalidas:
         x, y = random.randint(filas//2, filas-1), random.randint(0, columnas-1)
-        if (x, y) != (0, 0) and mapa[x][y] == '.':  
-            mapa[x][y] = 'S'
+        if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB':  
+            mapa[x][y] = '\U0001F532'
             salida = (x, y)
             contadorSalidasColocadas+=1
 
@@ -52,12 +62,12 @@ def armadoDeMapa(filas, columnas):
         x, y = caminoSeguro[0], caminoSeguro[1]
         if x < xSalida:
             x += 1
-            if mapa[x][y] != 'S':
-                mapa[x][y] = '.'
+            if mapa[x][y] != '\U0001F532':
+                mapa[x][y] = '\U0001F7EB'
         elif y < ySalida:
             y += 1
-            if mapa[x][y] != 'S':
-                mapa[x][y] = '.'
+            if mapa[x][y] != '\U0001F532':
+                mapa[x][y] = '\U0001F7EB'
         caminoSeguro = (x, y)
         
     return mapa
@@ -68,7 +78,7 @@ def imprimirMapa(mapa, posicionHeroe):
     for i, fila in enumerate(mapa):
         for j, columna in enumerate(fila):
             if (i, j) == posicionHeroe:
-                print('H', end=' ')
+                print('\U0001F47D', end=' ')
             else:
                 print(columna, end=' ')
         print()
@@ -76,10 +86,17 @@ def imprimirMapa(mapa, posicionHeroe):
 
 #Controlar la posicion del Heroe y verificar si llego a la S(Salida) o se topo con un C(Contrincante)
 def controlDePosicion(mapa, posicion):
-    if mapa[posicion[0]][posicion[1]] == 'C':
+    if mapa[posicion[0]][posicion[1]] == '\U0001F480':
         print("¡Has encontrado un contrincante! ¡Preparate para la batalla!")
+        recompensa = battle.batalla(random.choice(champions.champions['heroe']), random.choice(champions.champions['enemigos']))
+        
+        if recompensa['victoria'] == True:
+            mapa[posicion[0]][posicion[1]] = '\U0001F7EB'
+        else:
+            print("¡El mundo media ha caído!")
 
-    if mapa[posicion[0]][posicion[1]] == 'S':
+
+    if mapa[posicion[0]][posicion[1]] == '\U0001F532':
         print("¡Has alcanzado la salida! Nivel completado.")
         exit()
 
@@ -87,33 +104,36 @@ def controlDePosicion(mapa, posicion):
 #Movimiento del Heroe por el mapa
 def movimientoHeroe(mapa, posicion):
     filas, columnas = len(mapa), len(mapa[0])
+    move=''
 
     movimientos = {
         'w': (-1, 0),  # Arriba
-        's': (1, 0),   # Abajo
         'a': (0, -1),  # Izquierda
+        's': (1, 0),   # Abajo
         'd': (0, 1)    # Derecha
     }
 
-    print("Moverse: w=arriba, s=abajo, a=izquierda, d=derecha")
-    move = input("Elige un movimiento: ").lower()
+    print("Moverse: w=arriba, a=izquierda, s=abajo, d=derecha")
 
-    if move in movimientos:
-        nuevaPosicion = (posicion[0] + movimientos[move][0], posicion[1] + movimientos[move][1])
-        
-        # Control de posición para evitar salir del mapa o moverse a un obstáculo
-        if 0 <= nuevaPosicion[0] < filas and 0 <= nuevaPosicion[1] < columnas:
-            if mapa[nuevaPosicion[0]][nuevaPosicion[1]] not in ['A', 'P']:
-                return nuevaPosicion
+    while move != 'w' and 'a' and 's' and 'd':    
+        eventoTecla = keyboard.read_event()
+
+        if eventoTecla.event_type == 'down':
+            move = eventoTecla.name.lower()
+
+            if move in movimientos:
+                nuevaPosicion = (posicion[0] + movimientos[move][0], posicion[1] + movimientos[move][1])
+                
+                # Control de posición para evitar salir del mapa o moverse a un obstáculo
+                if 0 <= nuevaPosicion[0] < filas and 0 <= nuevaPosicion[1] < columnas:
+                    if mapa[nuevaPosicion[0]][nuevaPosicion[1]] not in ['\U0001F333', '\U0001F9F1']:
+                        return nuevaPosicion
+                    else:
+                        print("¡Hay un obstaculo!")
+                else:
+                    print("¡No puedes salir del mapa!")
             else:
-                print("¡Hay un obstaculo!")
-                return posicion
-        else:
-            print("¡No puedes salir del mapa!")
-            return posicion
-    else:
-        print("Movimiento invalido")
-        return posicion
+                print("Movimiento invalido")
 
 
 #Iniciar mapa 

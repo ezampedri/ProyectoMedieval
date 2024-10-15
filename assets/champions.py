@@ -10,6 +10,7 @@ champions = {
         "def": 5,
         "lk": 10,
         "exp": 0,
+        "arma": 40,
         "habilidades": ["Rejuvenecer"]
     },
     {
@@ -23,6 +24,7 @@ champions = {
         "def": 10,
         "lk": 10,
         "exp": 0,
+        "arma": 20,
         "habilidades": ["Corte Dimensional", "Disparo Penetrante"]
     },
     {
@@ -30,12 +32,13 @@ champions = {
         "clase":"Maga",
         "hp": 250,
         "mp": 50,
-        "atk": 5,
+        "atk": 30,
         "mag": 5,
         "agi":90,
         "def": 5,
         "lk": 20,
         "exp": 0,
+        "arma": 20,
         "habilidades": ["Bola de fuego"]
     },
     {
@@ -43,12 +46,13 @@ champions = {
         "clase":"Arquero",
         "hp": 250,
         "mp": 50,
-        "atk": 5,
+        "atk": 50,
         "mag": 5,
         "agi":60,
         "def": 5,
         "lk": 20,
         "exp": 0,
+        "arma": 30,
         "habilidades": ["Disparo Penetrante"]
     }
     ],
@@ -62,7 +66,8 @@ champions = {
             "agi": 20,
             "def": 20,
             "lk": 20,
-            "exp": 20
+            "exp": 20,
+            "habilidades":[]
         },
         {
             "nombre": "Orco",
@@ -73,8 +78,8 @@ champions = {
             "agi": 20,
             "def": 20,
             "lk": 20,
-            "exp": 20
-
+            "exp": 20,
+            "habilidades":[]
         },
         {
             "nombre": "Drafnakk, Tirano de Gyanavall",
@@ -85,7 +90,8 @@ champions = {
             "agi": 20,
             "def": 20,
             "lk": 20,
-            "exp": 20
+            "exp": 20,
+            "habilidades":[]
         }
     ]
 }
@@ -176,5 +182,5 @@ def menu():
             print("Opción no válida. Inténtalo de nuevo.")
 
 
-menu()
+#menu()
                 
