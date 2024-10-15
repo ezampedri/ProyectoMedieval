@@ -17,7 +17,7 @@ def armadoDeMapa(filas, columnas):
     #Calculo de arboles (A) y paredes (P) para agregar
     cantidadArboles = (filas * columnas) // 5
     cantidadParedes = (filas * columnas) // 5
-    cantidadContrincantes=5
+    cantidadContrincantes = (filas * columnas) // 7
     cantidadSalidas=1
 
     contadorArbolesColocados=0
@@ -85,7 +85,9 @@ def imprimirMapa(mapa, posicionHeroe):
 
 
 #Controlar la posicion del Heroe y verificar si llego a la S(Salida) o se topo con un C(Contrincante)
-def controlDePosicion(mapa, posicion):
+def controlDePosicion(mapa, posicion, nivel):
+    salidaAlcanzada = False
+
     if mapa[posicion[0]][posicion[1]] == '\U0001F480':
         print("¡Has encontrado un contrincante! ¡Preparate para la batalla!")
         recompensa = battle.batalla(random.choice(champions.champions['heroe']), random.choice(champions.champions['enemigos']))
@@ -93,12 +95,14 @@ def controlDePosicion(mapa, posicion):
         if recompensa['victoria'] == True:
             mapa[posicion[0]][posicion[1]] = '\U0001F7EB'
         else:
-            print("¡El mundo media ha caído!")
-
+            print("¡El mundo medio ha caído!")
 
     if mapa[posicion[0]][posicion[1]] == '\U0001F532':
-        print("¡Has alcanzado la salida! Nivel completado.")
-        exit()
+        print(f"¡Has alcanzado la salida! Nivel {nivel} completado.")
+        salidaAlcanzada = True
+
+    return salidaAlcanzada
+        
 
 
 #Movimiento del Heroe por el mapa
@@ -137,11 +141,18 @@ def movimientoHeroe(mapa, posicion):
 
 
 #Iniciar mapa 
-def iniciarMapa():
-    mapa = armadoDeMapa(10, 10)
-    posicionHeroe = (0, 0)
+def iniciarMapa(nivel):
+    if nivel == 1:
+        mapa = armadoDeMapa(10, 15)
+    elif nivel == 2:
+        mapa = armadoDeMapa(15, 20)
+    else:
+        mapa = armadoDeMapa(20, 25)
 
-    while True:
+    posicionHeroe = (0, 0)
+    salidaAlcanzada = False
+
+    while salidaAlcanzada == False:
         imprimirMapa(mapa, posicionHeroe)
         posicionHeroe = movimientoHeroe(mapa, posicionHeroe)
-        controlDePosicion(mapa, posicionHeroe)
+        salidaAlcanzada=controlDePosicion(mapa, posicionHeroe, nivel)
