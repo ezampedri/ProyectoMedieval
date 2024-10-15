@@ -1,8 +1,7 @@
 import random as r
 import json
 import suerte
-import os
-import time as tm
+
 import sys
 
 heroe = {
