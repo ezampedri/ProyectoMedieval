@@ -24,7 +24,7 @@ hp_total = heroe['hp'] #me guardo el total del hp porque después la voy a opera
 enemigo = {
     "nombre": "Orco",
     "hp": 200,
-    "atk": 75,
+    "atk": 45,
     "def": 7,
     "agi": 20,
     "lk": 20
@@ -157,6 +157,7 @@ def acc(heroe):
     print(f"Escribe tu acción! \n\n")
     if sobrecargado():
         generar_texto(Fore.RED+'SOBRECARGA'+Style.RESET_ALL)
+        sobrecargado()
     print(f"Atacar")
     print(f"Habilidades")
     print(f"Evadir")
@@ -223,4 +224,3 @@ def batalla(heroe, enemigo):
         }
     return recompensa
 
-batalla(heroe, enemigo)

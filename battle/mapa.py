@@ -212,5 +212,11 @@ def minijuego_cerradura():
         else:
             print("Entrada no válida. Por favor, ingresa 'V', 'R' o 'A'.")
 
+    for fila in puzzle:
+        print(" ".join(fila))
     print("Las magníficas puertas de la sala del trono se abren para ti, eres digno.")
+
     return True
+
+
+imprimirMapa(armadoDeMapa(), ("0,0)")
