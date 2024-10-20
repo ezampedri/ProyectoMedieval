@@ -1,4 +1,5 @@
 from battle import mapa
+from assets import partida
 
 # Punto de entrada al juego
 def main():
@@ -7,8 +8,9 @@ def main():
         print('- Proyecto Medieval -')
         print('---------------------')
         print('1) Iniciar Juego     ')
-        print('2) Reglas del juego  ')
-        print('3) Exit              ')
+        print('2) Continuar         ')
+        print('3) Reglas del juego  ')
+        print('4) Exit              ')
         print('---------------------')
 
         try:
@@ -17,8 +19,13 @@ def main():
             if opcion == 1:
                 mapa.iniciarMapa(1)
                 mapa.iniciarMapa(2)
+
+                #Aquí iría el minijuego de Alan
                 mapa.iniciarMapa(3)
             elif opcion == 2:
+                print('Continuar juego guardado')
+                #mapa.continuarJuego(mapaGuardado, nivelGuardado, posicionHeroeGuardado)
+            elif opcion == 3:
                 print('''             
                     Primera vez jugando RPG?
 
@@ -45,7 +52,7 @@ def main():
                     exp: contador de experiencia
                     habilidades: lo que hace cada personaje.                
                     ''')
-            elif opcion == 3:
+            elif opcion == 4:
                 exit()
             else:
                 print('Opcion invalida')

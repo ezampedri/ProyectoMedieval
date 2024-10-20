@@ -11,7 +11,7 @@ from assets import champions
 # U0001F532 es salida
 
 def armadoDeMapa(filas, columnas):
-    #Se llena la matriz FxC con '.' lo que representa el piso del mapa
+    #Se llena la matriz FxC con tierra lo que representa el piso del mapa
     mapa = [['\U0001F7EB' for _ in range(columnas)] for _ in range(filas)] 
 
     #Calculo de arboles (A) y paredes (P) para agregar
@@ -140,7 +140,7 @@ def movimientoHeroe(mapa, posicion):
                 print("Movimiento invalido")
 
 
-#Iniciar mapa 
+# Iniciar juego 
 def iniciarMapa(nivel):
     if nivel == 1:
         mapa = armadoDeMapa(10, 15)
@@ -150,6 +150,16 @@ def iniciarMapa(nivel):
         mapa = armadoDeMapa(20, 25)
 
     posicionHeroe = (0, 0)
+    salidaAlcanzada = False
+
+    while salidaAlcanzada == False:
+        imprimirMapa(mapa, posicionHeroe)
+        posicionHeroe = movimientoHeroe(mapa, posicionHeroe)
+        salidaAlcanzada=controlDePosicion(mapa, posicionHeroe, nivel)
+
+
+# Continuar juego guardado
+def continuarJuego(mapa, nivel, heroePosicion):
     salidaAlcanzada = False
 
     while salidaAlcanzada == False:
