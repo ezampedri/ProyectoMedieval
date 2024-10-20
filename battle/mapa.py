@@ -1,7 +1,7 @@
 import random
 import keyboard
 from colorama import Fore, Style
-import battle
+import os
 
 # U0001F7EB es tierra
 # U0001F47D es heroe
@@ -211,12 +211,10 @@ def minijuego_cerradura():
             girar_flechas(azules)
         else:
             print("Entrada no válida. Por favor, ingresa 'V', 'R' o 'A'.")
+        os.system('cls')
 
     for fila in puzzle:
         print(" ".join(fila))
     print("Las magníficas puertas de la sala del trono se abren para ti, eres digno.")
 
     return True
-
-
-imprimirMapa(armadoDeMapa(), ("0,0)")
