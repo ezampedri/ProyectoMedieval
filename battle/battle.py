@@ -4,7 +4,31 @@ from assets import suerte
 import os
 import time as tm
 import sys
+import keyboard
+from colorama import Back, Style, Fore
 
+heroe = {
+    'nombre': 'Aiken',
+    "hp": 270,
+    "mp": 40,
+    "atk": 10,
+    "mag": 5,
+    "agi": 20,
+    "def": 5,
+    "lk": suerte.suerte,
+    "arma": 10,
+    "habilidades": ["Rejuvenecer", "Bola de fuego"]
+}
+hp_total = heroe['hp'] #me guardo el total del hp porque después la voy a operar
+
+enemigo = {
+    "nombre": "Orco",
+    "hp": 200,
+    "atk": 45,
+    "def": 7,
+    "agi": 20,
+    "lk": 20
+}
 
 def generar_texto(texto, velocidad= 0.02):
     for caracter in texto:
@@ -73,9 +97,67 @@ def escape(heroe):
     escapada = suerte.tirada((suerte.suerte // 2) + heroe['agi'])
     return escapada
 
+def minijuego_sobrecarga():
+    '''Este minijuego genera una barra que se mueve de derecha a izquierda.
+       El jugador debe presionar espacio cuando la barra de impacto está dentro
+       de una sección roja. Si lo hace correctamente, acumula puntos.'''
+
+    cont = 0  # Contador para acumular los aciertos
+    x = 30  # Ancho de la barra
+    x_redband = r.randint(1, 3)  # Ancho aleatorio de la banda roja
+    pos_redband = 2  # Posición de inicio de la banda roja
+
+    # Crear la barra roja en una posición aleatoria
+    barra = list(range(pos_redband, min(pos_redband + x_redband, x))) 
+
+    # 5 iteraciones de la barra moviéndose
+    for _ in range(5):
+        flag = True  # Inicializamos la bandera en True para empezar el ciclo
+        for i in range(x - 1, -1, -1):  # Movimiento de derecha a izquierda
+            if not flag:  # Si la bandera está en False, salimos del ciclo
+                flag = False
+
+            os.system('cls' if os.name == 'nt' else 'clear')  # Limpiar pantalla
+            linea = [' '] * x  # Crear la línea vacía
+
+            # Colocar la banda roja en la posición correspondiente
+            for j in barra:
+                linea[j] = Back.RED + ' ' + Style.RESET_ALL
+
+            linea[i] = '|-'  # El cursor que se mueve de derecha a izquierda
+
+            print(''.join(linea))  # Mostrar la barra en pantalla
+
+            tm.sleep(0.03)  # Velocidad de movimiento de la barra
+
+            # Comprobar si se presionó espacio
+            if keyboard.is_pressed('space'):
+                tm.sleep(0.07)
+                if i in barra:  # Si el cursor está en la banda roja
+                    cont += 1  # Incrementar el contador si se presionó correctamente
+                flag = False  # Cambiar la bandera a False para salir del ciclo
+
+    tm.sleep(0.4)  # Pausa final
+    return cont  # Retornar el número de aciertos
+
+def sobrecargado(): #esto devuelve True o False según la vida faltante de nuestro personaje
+    sobrecarga = suerte.tirada(hp_total-heroe['hp']//1)
+    return sobrecarga
+
+def ac_atk_sobrecarga(heroe=heroe, enemigo=enemigo):
+    generar_texto('Concentras tu ataque especial...')
+    tm.sleep(1)
+    multiplicador = minijuego_sobrecarga()
+    daño = calcular_daño(heroe, enemigo)*multiplicador
+    generar_texto(f"{heroe['nombre']} logró dañar a {enemigo} por un total de {daño}")
+    enemigo['hp'] -= daño
+
 #función que maneja todas las acciones posibles del jugador.
 def acc(heroe, enemigo):
     print(f"Escribe tu acción! \n\n")
+    if sobrecargado():
+        generar_texto(Fore.RED+'SOBRECARGA'+Style.RESET_ALL)
+        sobrecargado()
     print(f"Atacar")
     print(f"Habilidades")
     print(f"Evadir")
@@ -97,7 +179,9 @@ def acc(heroe, enemigo):
         generar_texto(f'{heroe["nombre"]} ¡se prepara para evadir el próximo ataque!')
         heroe['agi'] *= 2  # Dobla la agilidad temporalmente
     elif user == 'escapar':
-        escape(heroe)
+        escape()
+    elif user == 'sobrecarga':
+        ac_atk_sobrecarga()
     else:
         generar_texto('No se reconoce el comando!')
 
@@ -119,6 +203,7 @@ def acc_ai(enemigo, heroe):
 #esto encapsula todas las funciones en un solo llamado para ejecutar el programa.
 def batalla(heroe, enemigo):
     while heroe['hp'] > 0 and enemigo['hp'] > 0:
+        sobrecargado()
         interfaz(heroe, enemigo)
         acc(heroe, enemigo)
         tm.sleep(1.5)
