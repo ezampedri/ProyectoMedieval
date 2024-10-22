@@ -164,7 +164,7 @@ def menu():
         print('---------------------')
         print('- Proyecto Medieval -')
         print('---------------------')
-        print("\nMenu:")
+        print("Menu:")
         print("1. Ver Héroes")
         print("2. Ver Enemigos")
         print("3. Salir")

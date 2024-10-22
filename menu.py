@@ -19,8 +19,7 @@ def main():
             if opcion == 1:
                 mapa.iniciarMapa(1)
                 mapa.iniciarMapa(2)
-
-                #Aquí iría el minijuego de Alan
+                mapa.minijuego_cerradura()
                 mapa.iniciarMapa(3)
             elif opcion == 2:
                 print('Continuar juego guardado')

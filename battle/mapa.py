@@ -1,14 +1,21 @@
 import random
+from types import NoneType
 import keyboard
 from battle import battle
 from assets import champions
+from colorama import Fore, Style
+import os
 
 # U0001F7EB es tierra
-# U0001F47D es heroe
+# U0001F9D9 es heroe
 # U0001F480 es contrincante
 # U0001F9F1 es pared
 # U0001F333 es arbol
 # U0001F532 es salida
+
+mapaGuardado = None
+nivelGuardado = None
+posicionHeroeGuardado = None
 
 def armadoDeMapa(filas, columnas):
     #Se llena la matriz FxC con tierra lo que representa el piso del mapa
@@ -78,7 +85,7 @@ def imprimirMapa(mapa, posicionHeroe):
     for i, fila in enumerate(mapa):
         for j, columna in enumerate(fila):
             if (i, j) == posicionHeroe:
-                print('\U0001F47D', end=' ')
+                print('\U0001F9D9', end=' ')
             else:
                 print(columna, end=' ')
         print()
@@ -88,25 +95,29 @@ def imprimirMapa(mapa, posicionHeroe):
 def controlDePosicion(mapa, posicion, nivel):
     salidaAlcanzada = False
 
-    if mapa[posicion[0]][posicion[1]] == '\U0001F480':
-        print("¡Has encontrado un contrincante! ¡Preparate para la batalla!")
-        recompensa = battle.batalla(random.choice(champions.champions['heroe']), random.choice(champions.champions['enemigos']))
-        
-        if recompensa['victoria'] == True:
-            mapa[posicion[0]][posicion[1]] = '\U0001F7EB'
-        else:
-            print("¡El mundo medio ha caído!")
+    try:
+        if mapa[posicion[0]][posicion[1]] == '\U0001F480':
+            print("¡Has encontrado un contrincante! ¡Preparate para la batalla!")
+            recompensa = battle.batalla(random.choice(champions.champions['heroe']), random.choice(champions.champions['enemigos']))
+            
+            if recompensa['victoria'] == True:
+                mapa[posicion[0]][posicion[1]] = '\U0001F7EB'
+            else:
+                print("¡El mundo medio ha caído!")
 
-    if mapa[posicion[0]][posicion[1]] == '\U0001F532':
-        print(f"¡Has alcanzado la salida! Nivel {nivel} completado.")
-        salidaAlcanzada = True
+        if mapa[posicion[0]][posicion[1]] == '\U0001F532':
+            print(f"¡Has alcanzado la salida! Nivel {nivel} completado.")
+            salidaAlcanzada = True
 
-    return salidaAlcanzada
+        return salidaAlcanzada
+    except BaseException:
+        print('Movimiento invalido')
+        return salidaAlcanzada
         
 
 
 #Movimiento del Heroe por el mapa
-def movimientoHeroe(mapa, posicion):
+def movimientoHeroe(mapa, posicion, nivel):
     filas, columnas = len(mapa), len(mapa[0])
     move=''
 
@@ -117,7 +128,7 @@ def movimientoHeroe(mapa, posicion):
         'd': (0, 1)    # Derecha
     }
 
-    print("Moverse: w=arriba, a=izquierda, s=abajo, d=derecha")
+    print("Moverse: w=arriba, a=izquierda, s=abajo, d=derecha. M=Menu Contextual")
 
     while move != 'w' and 'a' and 's' and 'd':    
         eventoTecla = keyboard.read_event()
@@ -137,7 +148,38 @@ def movimientoHeroe(mapa, posicion):
                 else:
                     print("¡No puedes salir del mapa!")
             else:
-                print("Movimiento invalido")
+                if move == 'm':
+                    menuContextual(mapa, posicion, nivel)
+                else:
+                    print("Movimiento invalido")
+
+    
+
+
+def menuContextual(mapa, posicion, nivel):
+        salirWhile = False
+        while salirWhile == False:
+            print('---------------------')
+            print('-  Menu contextual  -')
+            print('---------------------')
+            print('1) Guardar Juego     ')
+            print('2) Exit              ')
+            print('---------------------')
+
+            try:
+                opcion=int(input('Ingrese una opcion:'))
+
+                if opcion == 1:
+                    mapaGuardado = mapa
+                    posicionHeroeGuardado = posicion
+                    nivelGuardado = nivel
+                    salirWhile = True
+                elif opcion == 2:
+                    exit()
+                else:
+                    print('Opcion invalida')
+            except ValueError:
+                print('Opcion invalida')
 
 
 # Iniciar juego 
@@ -154,15 +196,84 @@ def iniciarMapa(nivel):
 
     while salidaAlcanzada == False:
         imprimirMapa(mapa, posicionHeroe)
-        posicionHeroe = movimientoHeroe(mapa, posicionHeroe)
-        salidaAlcanzada=controlDePosicion(mapa, posicionHeroe, nivel)
+        posicionHeroe = movimientoHeroe(mapa, posicionHeroe, nivel)
+        salidaAlcanzada = controlDePosicion(mapa, posicionHeroe, nivel)
+        #os.system('cls')
 
 
-# Continuar juego guardado
-def continuarJuego(mapa, nivel, heroePosicion):
-    salidaAlcanzada = False
+def minijuego_cerradura():
+    # Guarda en memoria las flechas para trabajarlas más fácil
+    izquierda = "←"
+    arriba = "↑" 
+    derecha = "→" 
+    abajo = "↓"
+    
+    # Crear todas sus variantes
+    ra = Fore.RED + arriba + Style.RESET_ALL    # Arriba rojo
+    rb = Fore.RED + abajo + Style.RESET_ALL     # Abajo rojo
+    rd = Fore.RED + derecha + Style.RESET_ALL    # Derecha rojo
+    ri = Fore.RED + izquierda + Style.RESET_ALL   # Izquierda rojo
+    rojas = [ra, rb, rd, ri]
 
-    while salidaAlcanzada == False:
-        imprimirMapa(mapa, posicionHeroe)
-        posicionHeroe = movimientoHeroe(mapa, posicionHeroe)
-        salidaAlcanzada=controlDePosicion(mapa, posicionHeroe, nivel)
+    va = Fore.GREEN + arriba + Style.RESET_ALL   # Arriba verde
+    vb = Fore.GREEN + abajo + Style.RESET_ALL     # Abajo verde
+    vd = Fore.GREEN + derecha + Style.RESET_ALL    # Derecha verde
+    vi = Fore.GREEN + izquierda + Style.RESET_ALL   # Izquierda verde
+    verdes = [va, vb, vd, vi]
+
+    aa = Fore.YELLOW + arriba + Style.RESET_ALL   # Arriba amarillo
+    ab = Fore.YELLOW + abajo + Style.RESET_ALL     # Abajo amarillo
+    ad = Fore.YELLOW + derecha + Style.RESET_ALL    # Derecha amarillo
+    ai = Fore.YELLOW + izquierda + Style.RESET_ALL   # Izquierda amarillo
+    azules = [aa, ab, ad, ai]
+
+    solucion = [
+        [vd, rb, ri],  # Fila 0
+        [va, aa, aa],  # Fila 1
+        [ai, rd, vd]   # Fila 2
+    ]
+
+    puzzle = [
+        [vi, ri, rb],  # Fila 0
+        [vb, ai, ai],  # Fila 1
+        [ad, ra, vi]   # Fila 2
+    ]
+
+    def girar_flechas(color):
+        posiciones = []
+        for i, fila in enumerate(puzzle):
+            for j, celda in enumerate(fila):
+                if celda in color:
+                    posiciones.append((i, j))
+
+        # Ciclar los colores en las posiciones encontradas
+        for i, j in posiciones:
+            color_actual = puzzle[i][j]
+            try:
+                # Intentar obtener el índice del color actual
+                indice_actual = color.index(color_actual)
+                # Calcular el índice del siguiente color (circular)
+                siguiente_indice = indice_actual + 1
+                puzzle[i][j] = color[siguiente_indice]
+            except IndexError:
+                puzzle[i][j] = color[0]
+
+    while puzzle != solucion:
+        # Imprimir el puzzle
+        for fila in puzzle:
+            print(" ".join(fila))
+        
+        user = input("Ingresa un color para mover(V/R/A): ").lower()
+        if user == "v":
+            girar_flechas(verdes)
+        elif user == "r":
+            girar_flechas(rojas)
+        elif user == "a":
+            girar_flechas(azules)
+        else:
+            print("Entrada no válida. Por favor, ingresa 'V', 'R' o 'A'.")
+        os.system('cls')
+
+    for fila in puzzle:
+        print(" ".join(fila))
+    print("Las magníficas puertas de la sala del trono se abren para ti, eres digno.")

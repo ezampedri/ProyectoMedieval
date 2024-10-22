@@ -1,6 +1,0 @@
-import champions
-
-partida=[
-
-]
-
