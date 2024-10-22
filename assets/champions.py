@@ -1,101 +1,6 @@
-champions = {
-    "heroe": [{
-        "nombre": "Gandalf",
-        "clase":"Healer",
-        "hp": 270,
-        "mp": 40,
-        "atk": 10,
-        "mag": 15,
-        "agi":50,
-        "def": 5,
-        "lk": 10,
-        "exp": 0,
-        "arma": 40,
-        "habilidades": ["Rejuvenecer"]
-    },
-    {
-        "nombre": "Aragorn",
-        "clase":"Guerrero",
-        "hp": 350,
-        "mp": 25,
-        "atk": 20,
-        "mag": 5,
-        "agi":80,
-        "def": 10,
-        "lk": 10,
-        "exp": 0,
-        "arma": 20,
-        "habilidades": ["Corte Dimensional", "Disparo Penetrante"]
-    },
-    {
-        "nombre": "Morgana",
-        "clase":"Maga",
-        "hp": 250,
-        "mp": 50,
-        "atk": 30,
-        "mag": 5,
-        "agi":90,
-        "def": 5,
-        "lk": 20,
-        "exp": 0,
-        "arma": 20,
-        "habilidades": ["Bola de fuego"]
-    },
-    {
-        "nombre": "Legolas",
-        "clase":"Arquero",
-        "hp": 250,
-        "mp": 50,
-        "atk": 50,
-        "mag": 5,
-        "agi":60,
-        "def": 5,
-        "lk": 20,
-        "exp": 0,
-        "arma": 30,
-        "habilidades": ["Disparo Penetrante"]
-    }
-    ],
-    "enemigos": [
-        {
-            "nombre": "Goblin",
-            "hp": 20,
-            "mp": 20,
-            "atk": 20,
-            "mag": 20,
-            "agi": 20,
-            "def": 20,
-            "lk": 20,
-            "exp": 20,
-            "habilidades":[]
-        },
-        {
-            "nombre": "Orco",
-            "hp": 20,
-            "mp": 20,
-            "atk": 20,
-            "mag": 20,
-            "agi": 20,
-            "def": 20,
-            "lk": 20,
-            "exp": 20,
-            "habilidades":[]
-        },
-        {
-            "nombre": "Drafnakk, Tirano de Gyanavall",
-            "hp": 500,
-            "mp": 20,
-            "atk": 20,
-            "mag": 20,
-            "agi": 20,
-            "def": 20,
-            "lk": 20,
-            "exp": 20,
-            "habilidades":[]
-        }
-    ]
-}
-
+import keyboard
+import json
+import champions
 
 def curarse(nombre_heroe):
     """
@@ -108,9 +13,10 @@ def curarse(nombre_heroe):
     Le suma 50 puntos de HP
     
     """
-    for heroe in champions["heroe"]:
-        if heroe["nombre"] == nombre_heroe:
-            heroe["hp"] +=50
+    with open("champions.json", 'r') as archivo:
+        for heroe in champions["heroe"]:
+            if heroe["nombre"] == nombre_heroe:
+                heroe["hp"] +=50
 
 def rejuvenecer(nombre_heroe):
     """
@@ -124,63 +30,70 @@ def rejuvenecer(nombre_heroe):
     
     """
     for heroe in champions["heroe"]:
-        if heroe["nombre"] == nombre_heroe:
-            if nombre_heroe == "Gandalf":
-                heroe["hp"] -= 5
-                heroe["mp"] += 200
+        with open("champions.json", 'r') as archivo:
+            if heroe["nombre"] == nombre_heroe:
+                if nombre_heroe == "Gandalf":
+                    heroe["hp"] -= 5
+                    heroe["mp"] += 200
 
-def mostrar_heroes():
-    """
-    Funcion para Mostrar heroes
 
-    Parametros
-    ninguno
+def seleccionarHeore(nombre_heroe):
+    with open("champions.json", 'r') as archivo:
+        data = json.load(archivo)['heroe']
+        for heroe in data:
+            if heroe["nombre"] == nombre_heroe:
+                campeon= champions.get(nombre_heroe, {})
+                return campeon
+            
 
-    Retorna
-    Toda la informacion de los heroes
-    
-    """
-    print("Héroes:")
-    for heroe in champions["heroe"]:
-        print(f"Nombre: {heroe['nombre']}, Clase: {heroe['clase']}, HP: {heroe['hp']}, MP: {heroe['mp']}, ATK: {heroe['atk']}, MAG: {heroe['mag']}, AGI: {heroe['agi']}, DEF: {heroe['def']}, LK: {heroe['lk']}, EXP: {heroe['exp']}, Habilidades: {', '.join(heroe['habilidades'])}")
 
-def mostrar_enemigos():
-    """
-    Funcion para Mostrar enemigos
 
-    Parametros
-    ninguno
-
-    Retorna
-    Toda la informacion de los enemigos
-    
-    """
-    print("Enemigos:")
-    for enemigo in champions["enemigos"]:
-        print(f"Nombre: {enemigo['nombre']}, HP: {enemigo['hp']}, MP: {enemigo['mp']}, ATK: {enemigo['atk']}, MAG: {enemigo['mag']}, AGI: {enemigo['agi']}, DEF: {enemigo['def']}, LK: {enemigo['lk']}, EXP: {enemigo['exp']}")
-
+# U0001F47D es emoji de heroe 
 def menu():
-    while True:
-        print('---------------------')
-        print('- Proyecto Medieval -')
-        print('---------------------')
-        print("\nMenu:")
-        print("1. Ver Héroes")
-        print("2. Ver Enemigos")
-        print("3. Salir")
-        print('---------------------')
-        opcion = input("Elige una opción: ")
+    """
+    Funcion para elegir el Heroe para empezar a jugar
 
+    Parametros
+    Numero de heroe seleccionado
+
+    Retorna
+    Sin retorno.
+    
+    """
+
+    while True:
+        print('---------------------------------------------------')
+        print('- Proyecto Medieval -------------------------------')
+        print('---------------------------------------------------')
+        print("\nSeleccionar Heroe:")
+        print("1. \U0001F47D Gandalf - Curador")
+        print('---------------------------------------------------')
+        print("Habilidades: Rejuvenecer")
+        print("\n2. \U0001F47D Aragorn - Guerrero")
+        print('---------------------------------------------------')
+        print("Habilidades: Corte Dimensional y Disparo Penetrante")
+        print("\n3. \U0001F47D Morgana - Maga")
+        print('---------------------------------------------------')
+        print("Habilidades: Bola de fuego")
+        print("\n4. \U0001F47D Legolas - Arquero")
+        print('---------------------------------------------------')
+        print("Habilidades: Corte Dimensional")
+        print("\n5. Salir")
+        print('---------------------------------------------------')
+        print("Elija una opción:")
+        opcion = keyboard.read_event()
         if opcion == '1':
-            mostrar_heroes()
+            seleccionarHeore('Gandalf')
         elif opcion == '2':
-            mostrar_enemigos()
+            seleccionarHeore('Aragorn')
         elif opcion == '3':
+            seleccionarHeore('Morgana')
+        elif opcion == '4':
+            seleccionarHeore('Legolas')
+        elif opcion == '5':
             print("Saliendo del programa...")
             break
         else:
             print("Opción no válida. Inténtalo de nuevo.")
 
 
-#menu()
-                
