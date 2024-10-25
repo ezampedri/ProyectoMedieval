@@ -50,8 +50,21 @@ def seleccionarHeore(nombre_heroe):
 
 # U0001F47D es emoji de heroe 
 def menu():
+<<<<<<< HEAD
     """
     Funcion para elegir el Heroe para empezar a jugar
+=======
+    while True:
+        print('---------------------')
+        print('- Proyecto Medieval -')
+        print('---------------------')
+        print("Menu:")
+        print("1. Ver Héroes")
+        print("2. Ver Enemigos")
+        print("3. Salir")
+        print('---------------------')
+        opcion = input("Elige una opción: ")
+>>>>>>> a41a926e5ddd8f2a25f348217c511be64b3e88b9
 
     Parametros
     Numero de heroe seleccionado
