@@ -1,10 +1,12 @@
 import random
 from types import NoneType
 import keyboard
-from battle import battle
-from assets import champions
+import battle
+from assets import funciones_champion
 from colorama import Fore, Style
 import os
+from battle import partida
+import json
 
 # U0001F7EB es tierra
 # U0001F9D9 es heroe
@@ -16,6 +18,32 @@ import os
 mapaGuardado = None
 nivelGuardado = None
 posicionHeroeGuardado = None
+
+#hardcodeado para probar
+heroeGuardado = {
+            "hp": 270,
+            "mp": 40,
+            "atk": 10,
+            "mag": 15,
+            "agi": 50,
+            "def": 5,
+            "lk": 10,
+            "exp": 0,
+            "arma": 40,
+            "habilidades": ["Rejuvenecer"]
+            }
+
+#hardcodeado para probar
+enemigo = {"hp": 20,
+            "mp": 20,
+            "atk": 20,
+            "mag": 20,
+            "agi": 20,
+            "def": 20,
+            "lk": 20,
+            "exp": 20
+            }
+
 
 def armadoDeMapa(filas, columnas):
     #Se llena la matriz FxC con tierra lo que representa el piso del mapa
@@ -90,6 +118,14 @@ def imprimirMapa(mapa, posicionHeroe):
                 print(columna, end=' ')
         print()
 
+'''
+#Cargar enemigo desde el json
+def cargar_enemigo(enemigo):
+    with open('../assets/champions.json', 'r') as archivo: 
+        data = json.load(archivo)
+        encuentro = data['enemigo'].get(enemigo)
+    return encuentro
+'''
 
 #Controlar la posicion del Heroe y verificar si llego a la S(Salida) o se topo con un C(Contrincante)
 def controlDePosicion(mapa, posicion, nivel):
@@ -97,10 +133,13 @@ def controlDePosicion(mapa, posicion, nivel):
 
     try:
         if mapa[posicion[0]][posicion[1]] == '\U0001F480':
+            global heroeGuardado
             print("¡Has encontrado un contrincante! ¡Preparate para la batalla!")
-            recompensa = battle.batalla(random.choice(champions.champions['heroe']), random.choice(champions.champions['enemigos']))
+            recompensa = battle.batalla(heroeGuardado, enemigo)
+            
             
             if recompensa['victoria'] == True:
+                progreso(recompensa)
                 mapa[posicion[0]][posicion[1]] = '\U0001F7EB'
             else:
                 print("¡El mundo medio ha caído!")
@@ -155,7 +194,6 @@ def movimientoHeroe(mapa, posicion, nivel):
 
     
 
-
 def menuContextual(mapa, posicion, nivel):
         salirWhile = False
         while salirWhile == False:
@@ -165,14 +203,15 @@ def menuContextual(mapa, posicion, nivel):
             print('1) Guardar Juego     ')
             print('2) Exit              ')
             print('---------------------')
-
             try:
                 opcion=int(input('Ingrese una opcion:'))
 
                 if opcion == 1:
+                    global mapaGuardado, nivelGuardado, posicionHeroeGuardado, heroeGuardado
                     mapaGuardado = mapa
-                    posicionHeroeGuardado = posicion
                     nivelGuardado = nivel
+                    posicionHeroeGuardado = posicion
+                    partida.guardar_partida(mapaGuardado, nivelGuardado, posicionHeroeGuardado, heroeGuardado)
                     salirWhile = True
                 elif opcion == 2:
                     exit()
@@ -183,7 +222,12 @@ def menuContextual(mapa, posicion, nivel):
 
 
 # Iniciar juego 
-def iniciarMapa(nivel):
+def iniciarMapa(nivel, heroe):
+    '''
+    global heroeGuardado 
+    heroeGuardado = heroe
+    '''
+
     if nivel == 1:
         mapa = armadoDeMapa(10, 15)
     elif nivel == 2:
@@ -229,7 +273,7 @@ def minijuego_cerradura():
 
     solucion = [
         [vd, rb, ri],  # Fila 0
-        [va, aa, aa],  # Fila 1
+        [va, ab, aa],  # Fila 1
         [ai, rd, vd]   # Fila 2
     ]
 
@@ -277,3 +321,26 @@ def minijuego_cerradura():
     for fila in puzzle:
         print(" ".join(fila))
     print("Las magníficas puertas de la sala del trono se abren para ti, eres digno.")
+    
+ 
+def progreso(recompensa):
+    global heroeGuardado
+    heroeGuardado['exp'] += recompensa['xp']
+    if heroeGuardado['xp'] > 100:
+        battle.generar_texto('Sientes una gran fuerza aflorando desde tu interior'),
+        heroeGuardado['hp'] *= 1.15
+        heroeGuardado['hp'] // 1
+        heroeGuardado['mp'] *= 1.20
+        heroeGuardado['mp'] // 1
+        heroeGuardado['atk'] *=1.10
+        heroeGuardado['atk'] // 1
+        heroeGuardado['mag'] *=1.10
+        heroeGuardado['mag'] // 1
+        heroeGuardado['agi'] *=1.10
+        heroeGuardado['agi'] // 1
+        heroeGuardado['def'] *=1.10
+        heroeGuardado['def'] // 1
+        heroeGuardado['lk'] *=1.10
+        heroeGuardado['lk'] // 1
+        heroeGuardado['def'] *=1.10
+        heroeGuardado['def'] // 1

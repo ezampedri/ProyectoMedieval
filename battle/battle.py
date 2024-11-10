@@ -1,13 +1,13 @@
 import random as r
 import json
-from assets import suerte
+import suerte
 import os
 import time as tm
 import sys
 import keyboard
 from colorama import Back, Style, Fore
 
-hp_total = 0
+hp_total = 250
 
 def generar_texto(texto, velocidad= 0.02):
     for caracter in texto:
@@ -134,9 +134,6 @@ def ac_atk_sobrecarga(heroe, enemigo):
 #función que maneja todas las acciones posibles del jugador.
 def acc(heroe, enemigo):
     print(f"Escribe tu acción! \n\n")
-    if sobrecargado(heroe):
-        generar_texto(Fore.RED+'SOBRECARGA'+Style.RESET_ALL)
-        sobrecargado(heroe)
     print(f"Atacar")
     print(f"Habilidades")
     print(f"Evadir")
@@ -181,10 +178,7 @@ def acc_ai(enemigo, heroe):
 
 #esto encapsula todas las funciones en un solo llamado para ejecutar el programa.
 def batalla(heroe, enemigo):
-    hp_total = heroe['hp']
-
     while heroe['hp'] > 0 and enemigo['hp'] > 0:
-        sobrecargado(heroe)
         interfaz(heroe, enemigo)
         acc(heroe, enemigo)
         tm.sleep(1.5)
@@ -204,3 +198,32 @@ def batalla(heroe, enemigo):
             'xp' : 0
         }
     return recompensa
+
+
+heroeGuardado = {
+    "nombre": 'Hyrule',
+    "hp": 270,
+    "mp": 40,
+    "atk": 10,
+    "mag": 15,
+    "agi": 50,
+    "def": 5,
+    "lk": 10,
+    "exp": 0,
+    "arma": 40,
+    "habilidades": ["Rejuvenecer"]
+    }
+
+enemigo = {
+    'nombre': 'Goblin',
+    "hp": 20,
+    "mp": 20,
+    "atk": 20,
+    "mag": 20,
+    "agi": 20,
+    "def": 20,
+    "lk": 20,
+    "exp": 20
+    }
+
+batalla(heroeGuardado, enemigo)

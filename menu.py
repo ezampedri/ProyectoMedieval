@@ -1,5 +1,6 @@
 from battle import mapa
-from assets import partida
+from battle import partida
+from assets import funciones_champion
 
 # Punto de entrada al juego
 def main():
@@ -8,8 +9,8 @@ def main():
         print('- Proyecto Medieval -')
         print('---------------------')
         print('1) Iniciar Juego     ')
-        print('2) Continuar         ')
-        print('3) Reglas del juego  ')
+        print('2) Continuar Juego   ')
+        print('3) Reglas de Juego   ')
         print('4) Exit              ')
         print('---------------------')
 
@@ -17,10 +18,15 @@ def main():
             opcion=int(input('Ingrese una opcion:'))
 
             if opcion == 1:
-                mapa.iniciarMapa(1)
-                mapa.iniciarMapa(2)
-                mapa.minijuego_cerradura()
-                mapa.iniciarMapa(3)
+                heroe = funciones_champion.menu()
+
+                if heroe != None:
+                    mapa.iniciarMapa(1, heroe)
+                    mapa.iniciarMapa(2, heroe)
+                    mapa.minijuego_cerradura()
+                    mapa.iniciarMapa(3, heroe)
+                else:
+                    print('No ha seleccionado heroe')
             elif opcion == 2:
                 print('Continuar juego guardado')
                 #mapa.continuarJuego(mapaGuardado, nivelGuardado, posicionHeroeGuardado)
