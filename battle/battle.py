@@ -1,6 +1,6 @@
 import random as r
 import json
-import suerte
+from battle import suerte
 import os
 import time as tm
 import sys
@@ -198,32 +198,3 @@ def batalla(heroe, enemigo):
             'xp' : 0
         }
     return recompensa
-
-
-heroeGuardado = {
-    "nombre": 'Hyrule',
-    "hp": 270,
-    "mp": 40,
-    "atk": 10,
-    "mag": 15,
-    "agi": 50,
-    "def": 5,
-    "lk": 10,
-    "exp": 0,
-    "arma": 40,
-    "habilidades": ["Rejuvenecer"]
-    }
-
-enemigo = {
-    'nombre': 'Goblin',
-    "hp": 20,
-    "mp": 20,
-    "atk": 20,
-    "mag": 20,
-    "agi": 20,
-    "def": 20,
-    "lk": 20,
-    "exp": 20
-    }
-
-batalla(heroeGuardado, enemigo)

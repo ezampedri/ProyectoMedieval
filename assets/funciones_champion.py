@@ -20,6 +20,7 @@ def curarse(nombre_heroe):
             if data["nombre"] == nombre_heroe:
                 heroe["hp"] +=50
 
+
 def rejuvenecer(nombre_heroe):
     """
     Función para rejuvenecer.
@@ -43,18 +44,32 @@ def seleccionarHeroe(nombre_heroe):
     """
     Función para seleccionar un héroe del archivo JSON.
     """
-    with open("../ProyectoMedieval/assets/champions.json", 'r') as archivo:
-        data = json.load(archivo)
+    try:
+        with open("../ProyectoMedieval/assets/champions.json", 'r') as archivo:
+            data = json.load(archivo)
 
-    # Acceder al héroe directamente por su nombre
-    heroe = data['nombre']
+        # Acceder al héroe directamente por su nombre
+        heroe = data['heroe'].get(nombre_heroe)
 
-    if heroe:
-        return heroe
-    else:
-        print(f"No se encontró al héroe: {nombre_heroe}")
+        if heroe:
+            return heroe
+        else:
+            print(f"No se encontró al héroe: {nombre_heroe}")
+            return None
+    except FileNotFoundError:
+        print(f"No se encontró archivo {archivo.name}")
         return None
 
+
+#Cargar enemigo desde el json
+def cargar_enemigo(enemigo):
+    enemigoCargado = ''
+
+    with open('../ProyectoMedieval/assets/champions.json', 'r') as archivo: 
+        data = json.load(archivo)
+        enemigoCargado = data['enemigo'].get(enemigo)
+
+    return enemigoCargado
 
 
 # U0001F47D es emoji de heroe 
