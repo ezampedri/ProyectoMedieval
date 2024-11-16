@@ -1,6 +1,6 @@
 import random as r
 import json
-import suerte
+from battle import suerte
 import os
 import time as tm
 import sys
@@ -239,6 +239,7 @@ def batalla(heroe, enemigo):
             'victoria' : False,
             'xp' : 0
         }
+
     return recompensa
 
 

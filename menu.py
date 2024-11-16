@@ -25,6 +25,7 @@ with open('tutorial.txt', 'r') as file:
 # Punto de entrada al juego
 def main():
     while True:
+
         imprimir_portada()
 
         try:
@@ -34,15 +35,15 @@ def main():
                 heroe = funciones_champion.menu()
 
                 if heroe != None:
-                    mapa.iniciarMapa(1, heroe)
-                    mapa.iniciarMapa(2, heroe)
+                    mapa.iniciarMapa(1, heroe, False)
+                    mapa.iniciarMapa(2, heroe, False)
                     mapa.minijuego_cerradura()
-                    mapa.iniciarMapa(3, heroe)
+                    mapa.iniciarMapa(3, heroe, False)
                 else:
                     print('No ha seleccionado heroe')
             elif opcion == 2:
-                print('Continuar juego guardado')
-                #mapa.continuarJuego(mapaGuardado, nivelGuardado, posicionHeroeGuardado)
+                partidaGuardada=partida.cargar_partida()
+                mapa.iniciarJuegoGuardado(partidaGuardada['EstadoMapa'], partidaGuardada['EstadoNivel'], partidaGuardada['EstadoHeroe'], partidaGuardada['EstadoPosicionHeroe'])
             elif opcion == 3:
                 generar_texto(tutorial)
                 tm.sleep(5)

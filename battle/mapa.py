@@ -1,11 +1,11 @@
 import random
 from types import NoneType
 import keyboard
-import battle
 from assets import funciones_champion
 from colorama import Fore, Style
 import os
 from battle import partida
+from battle import battle
 import json
 
 # U0001F7EB es tierra
@@ -15,35 +15,11 @@ import json
 # U0001F333 es arbol
 # U0001F532 es salida
 
+
 mapaGuardado = None
 nivelGuardado = None
 posicionHeroeGuardado = None
-
-#hardcodeado para probar
-heroeGuardado = {
-            "hp": 270,
-            "mp": 40,
-            "atk": 10,
-            "mag": 15,
-            "agi": 50,
-            "def": 5,
-            "lk": 10,
-            "exp": 0,
-            "arma": 40,
-            "habilidades": ["Rejuvenecer"]
-            }
-
-#hardcodeado para probar
-enemigo = {"hp": 20,
-            "mp": 20,
-            "atk": 20,
-            "mag": 20,
-            "agi": 20,
-            "def": 20,
-            "lk": 20,
-            "exp": 20
-            }
-
+heroeGuardado = None
 
 def armadoDeMapa(filas, columnas):
     #Se llena la matriz FxC con tierra lo que representa el piso del mapa
@@ -118,14 +94,6 @@ def imprimirMapa(mapa, posicionHeroe):
                 print(columna, end=' ')
         print()
 
-'''
-#Cargar enemigo desde el json
-def cargar_enemigo(enemigo):
-    with open('../assets/champions.json', 'r') as archivo: 
-        data = json.load(archivo)
-        encuentro = data['enemigo'].get(enemigo)
-    return encuentro
-'''
 
 #Controlar la posicion del Heroe y verificar si llego a la S(Salida) o se topo con un C(Contrincante)
 def controlDePosicion(mapa, posicion, nivel):
@@ -133,10 +101,18 @@ def controlDePosicion(mapa, posicion, nivel):
 
     try:
         if mapa[posicion[0]][posicion[1]] == '\U0001F480':
+            if nivel == 1:
+                enemigo = funciones_champion.cargar_enemigo('Goblin')
+            elif nivel == 2:
+                enemigo = funciones_champion.cargar_enemigo('Orco')
+            elif nivel == 3:
+                enemigo = funciones_champion.cargar_enemigo('Drafnakk, Tirano de Gyanavall')
+
             global heroeGuardado
             print("¡Has encontrado un contrincante! ¡Preparate para la batalla!")
+            print(heroeGuardado)
+            print(enemigo)
             recompensa = battle.batalla(heroeGuardado, enemigo)
-            
             
             if recompensa['victoria'] == True:
                 progreso(recompensa)
@@ -222,11 +198,9 @@ def menuContextual(mapa, posicion, nivel):
 
 
 # Iniciar juego 
-def iniciarMapa(nivel, heroe):
-    '''
+def iniciarMapa(nivel, heroe, restaurar):
     global heroeGuardado 
     heroeGuardado = heroe
-    '''
 
     if nivel == 1:
         mapa = armadoDeMapa(10, 15)
@@ -238,11 +212,28 @@ def iniciarMapa(nivel, heroe):
     posicionHeroe = (0, 0)
     salidaAlcanzada = False
 
+    if restaurar == True:
+        global mapaGuardado, nivelGuardado, posicionHeroeGuardado
+        mapa = mapaGuardado
+        nivel = nivelGuardado
+        heroe = heroeGuardado
+        posicionHeroe = posicionHeroeGuardado
+
     while salidaAlcanzada == False:
         imprimirMapa(mapa, posicionHeroe)
         posicionHeroe = movimientoHeroe(mapa, posicionHeroe, nivel)
         salidaAlcanzada = controlDePosicion(mapa, posicionHeroe, nivel)
         #os.system('cls')
+
+
+# Iniciar juego guardado
+def iniciarJuegoGuardado(mapa, nivel, heroe, posicionHeroe):
+    global mapaGuardado, nivelGuardado, heroeGuardado, posicionHeroeGuardado
+    mapaGuardado = mapa
+    nivelGuardado = nivel
+    heroeGuardado = heroe
+    posicionHeroeGuardado = posicionHeroe
+    iniciarMapa(nivel, heroe, True)
 
 
 def minijuego_cerradura():
