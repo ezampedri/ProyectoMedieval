@@ -1,21 +1,34 @@
 from battle import mapa
 from battle import partida
 from assets import funciones_champion
+import os
+import sys
+import time as tm
 
+def generar_texto(texto, velocidad= 0.02):
+    for caracter in texto:
+        sys.stdout.write(caracter)
+        sys.stdout.flush()
+        tm.sleep(velocidad)
+    print()
+
+
+
+def imprimir_portada():
+    with open('portada.txt', 'r') as file:
+        for line in file:
+            print(line, end='')
+
+
+with open('tutorial.txt', 'r') as file:
+    tutorial = file.read()
 # Punto de entrada al juego
 def main():
     while True:
-        print('---------------------')
-        print('- Proyecto Medieval -')
-        print('---------------------')
-        print('1) Iniciar Juego     ')
-        print('2) Continuar Juego   ')
-        print('3) Reglas de Juego   ')
-        print('4) Exit              ')
-        print('---------------------')
+        imprimir_portada()
 
         try:
-            opcion=int(input('Ingrese una opcion:'))
+            opcion=int(input('Ingrese una opcion: '))
 
             if opcion == 1:
                 heroe = funciones_champion.menu()
@@ -31,37 +44,15 @@ def main():
                 print('Continuar juego guardado')
                 #mapa.continuarJuego(mapaGuardado, nivelGuardado, posicionHeroeGuardado)
             elif opcion == 3:
-                print('''             
-                    Primera vez jugando RPG?
-
-                    En primera instancia, el juego ofrece 4 ¨clases¨ de personajes para elegir: Aragorn, Legolas, Morgana y Gandalf.
-                    Cada uno de ellos tiene habilidades distintas para desempeñar un rol unico, Guerrero, Arquero, Mago y Healer.
-                    A su vez, tienen estadisticas base repartidas de forma acorde al rol que cumple cada ¨clase¨
-                    
-                    El juego consta de 3 mapas, donde deberemos pelear con distintos enemigos hata llegar al 3er 
-                    y ultimo mapa donde tendremos la pelea con el jefe final, comunmente conocido como ¨BOSS¨.
-                    
-                    El modo de pelea sera un combate por turnos que esta basado en un sistema de tirada de dados donde el que saque el mayor 
-                    numero podra efectuar su habilidad exitosamente.
-                    
-                    Sacar un numero alto o bajo, dependera directamente de la estadistica ¨lk¨ (suerte), donde a mayor ¨lk¨ mayor probabilidad 
-                    tendremos de lanzar una habulidad de forma exitosa.
-                    
-                    Glosario:
-                    hp: puntos de vida
-                    mp: puntos de energia
-                    atk: puntos de ataque
-                    mag: puntos de ataque mágico
-                    def: puntos de defensa
-                    lk: puntos de suerte
-                    exp: contador de experiencia
-                    habilidades: lo que hace cada personaje.                
-                    ''')
+                generar_texto(tutorial)
+                tm.sleep(5)
             elif opcion == 4:
                 exit()
             else:
+                os.system('cls')
                 print('Opcion invalida')
         except ValueError:
+            os.system('cls')
             print('Opcion invalida')
 
 
