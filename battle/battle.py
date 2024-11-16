@@ -7,7 +7,49 @@ import sys
 import keyboard
 from colorama import Back, Style, Fore
 
-hp_total = 250
+
+'''
+Glosario para no-tan-nerds como yo (por si acaso):
+acc: Acción
+Acciones: Las acciones que puede realizar el jugador en un turno
+acc_ai: Acción del enemigo
+ac_ataque: Acción de ataque
+ac_evade: Acción de evasión
+ac_magia: Acción de magia
+ac_atk_sobrecarga: Acción de ataque especial
+minijuego_sobrecarga: Es un minijuego que se ejecuta para realizar un ataque especial, utiliza una lista vacía la cual se recorre por el iterador, si el jugador presiona espacio en el momento adecuado, se acumulan puntos.
+generar_texto: Función que imprime texto en pantalla letra por letra, es una ilusion de que el texto se escribe solo. Solo tiene un uso estético.
+interfaz: Función que imprime la interfaz de la batalla, mostrando los nombres de los personajes, sus hp y mp.
+'''
+
+heroeGuardado = {
+    "nombre": 'Hyrule',
+    "hp": 270,
+    "mp": 40,
+    "atk": 10,
+    "mag": 15,
+    "agi": 50,
+    "def": 5,
+    "lk": 10,
+    "exp": 0,
+    "arma": 40,
+    "habilidades": ["Rejuvenecer"]
+    }
+
+enemigo = {
+    'nombre': 'Goblin',
+    "hp": 20,
+    "mp": 20,
+    "atk": 20,
+    "mag": 20,
+    "agi": 20,
+    "def": 20,
+    "lk": 20,
+    "exp": 20,
+    "habilidades": ["Rejuvenecer"]
+    }
+
+hp_total = heroeGuardado['hp']  # Guardar la vida total del héroe
 
 def generar_texto(texto, velocidad= 0.02):
     for caracter in texto:
@@ -197,4 +239,10 @@ def batalla(heroe, enemigo):
             'victoria' : False,
             'xp' : 0
         }
+
     return recompensa
+
+
+
+
+batalla(heroeGuardado, enemigo)
