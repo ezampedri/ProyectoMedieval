@@ -15,9 +15,11 @@ import json
 # U0001F333 es arbol
 # U0001F532 es salida
 
+
 mapaGuardado = None
 nivelGuardado = None
 posicionHeroeGuardado = None
+heroeGuardado = None
 
 def armadoDeMapa(filas, columnas):
     #Se llena la matriz FxC con tierra lo que representa el piso del mapa
@@ -196,7 +198,7 @@ def menuContextual(mapa, posicion, nivel):
 
 
 # Iniciar juego 
-def iniciarMapa(nivel, heroe):
+def iniciarMapa(nivel, heroe, restaurar):
     global heroeGuardado 
     heroeGuardado = heroe
 
@@ -210,11 +212,28 @@ def iniciarMapa(nivel, heroe):
     posicionHeroe = (0, 0)
     salidaAlcanzada = False
 
+    if restaurar == True:
+        global mapaGuardado, nivelGuardado, posicionHeroeGuardado
+        mapa = mapaGuardado
+        nivel = nivelGuardado
+        heroe = heroeGuardado
+        posicionHeroe = posicionHeroeGuardado
+
     while salidaAlcanzada == False:
         imprimirMapa(mapa, posicionHeroe)
         posicionHeroe = movimientoHeroe(mapa, posicionHeroe, nivel)
         salidaAlcanzada = controlDePosicion(mapa, posicionHeroe, nivel)
         #os.system('cls')
+
+
+# Iniciar juego guardado
+def iniciarJuegoGuardado(mapa, nivel, heroe, posicionHeroe):
+    global mapaGuardado, nivelGuardado, heroeGuardado, posicionHeroeGuardado
+    mapaGuardado = mapa
+    nivelGuardado = nivel
+    heroeGuardado = heroe
+    posicionHeroeGuardado = posicionHeroe
+    iniciarMapa(nivel, heroe, True)
 
 
 def minijuego_cerradura():

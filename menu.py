@@ -8,12 +8,11 @@ def main():
         print('---------------------')
         print('- Proyecto Medieval -')
         print('---------------------')
-        print('1) Iniciar Juego     ')
+        print('1) Iniciar   Juego   ')
         print('2) Continuar Juego   ')
         print('3) Reglas de Juego   ')
         print('4) Exit              ')
         print('---------------------')
-
         try:
             opcion=int(input('Ingrese una opcion:'))
 
@@ -21,15 +20,15 @@ def main():
                 heroe = funciones_champion.menu()
 
                 if heroe != None:
-                    mapa.iniciarMapa(1, heroe)
-                    mapa.iniciarMapa(2, heroe)
+                    mapa.iniciarMapa(1, heroe, False)
+                    mapa.iniciarMapa(2, heroe, False)
                     mapa.minijuego_cerradura()
-                    mapa.iniciarMapa(3, heroe)
+                    mapa.iniciarMapa(3, heroe, False)
                 else:
                     print('No ha seleccionado heroe')
             elif opcion == 2:
-                print('Continuar juego guardado')
-                #mapa.continuarJuego(mapaGuardado, nivelGuardado, posicionHeroeGuardado)
+                partidaGuardada=partida.cargar_partida()
+                mapa.iniciarJuegoGuardado(partidaGuardada['EstadoMapa'], partidaGuardada['EstadoNivel'], partidaGuardada['EstadoHeroe'], partidaGuardada['EstadoPosicionHeroe'])
             elif opcion == 3:
                 print('''             
                     Primera vez jugando RPG?
