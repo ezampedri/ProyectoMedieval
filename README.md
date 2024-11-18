@@ -8,11 +8,11 @@
 
 * [Integrantes del equipo](#integrantes-del-equipo)
 
-* [Pasos a seguir para probar el trabajo practico](#pasos-a-seguir-para-probar-el-trabajo-practico)
+* [Pasos a seguir para probar el trabajo practico](#-pasos-a-seguir-para-probar-el-trabajo-practico)
 
 * [Instrucciones del Juego](#instrucciones-del-juego)
   
-* [Glosario](#glosario)
+* [Glosario](#-glosario)
 
 
 ## Objetivo
