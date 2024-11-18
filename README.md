@@ -80,6 +80,7 @@ Se ingresa el numero acorde al personaje.
 
  
  ⭐ Mapa
+ 
  El mapa posee una salida, al personaje, enemigos y obstaculos. Nuestro personaje esta identificado con un mago azul, la salida es el cuadrado blanco, los enemigos son las calaveras y los obstaculos son los arboles y los ladrillos. Debemos movernos con las teclas AWSD para llegar a la salida. Cuando nos crucemos con una calavera, se ejecuta automaticamente la batalla. Debemos ganarla si o si para avanzar el casillero.
 
 <img width="464" alt="imagen (2)" src="https://github.com/user-attachments/assets/199f2ba4-75a3-40fc-8ffd-267ab1a47821">
