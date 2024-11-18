@@ -12,7 +12,7 @@
             "lk": 10,
             "exp": 0,
             "habilidades": [
-                "Rejuvenecer", "bola de fuego"
+                "rejuvenecer", "bola de fuego"
             ]
         },
         "Aragorn": {
@@ -43,7 +43,7 @@
             "lk": 20,
             "exp": 0,
             "habilidades": [
-                "Bola de fuego"
+                "bola de fuego", "cataclismo"
             ]
         },
         "Legolas": {

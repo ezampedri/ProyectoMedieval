@@ -54,7 +54,3 @@ def main():
         except ValueError:
             os.system('cls')
             print('Opcion invalida')
-
-
-# Invocación de main
-main()

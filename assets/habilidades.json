@@ -9,8 +9,14 @@
       {
         "nombre": "bola de fuego",
         "descripcion": "Conjura una bola de fuego que abrasa el terreno a su paso, ideal para esa parrillada de domingo.",
-        "atk": 30,
+        "atk": 1.7,
         "cost": 5
+      },
+      {
+        "nombre": "cataclismo",
+        "descripcion": "Una tormenta de fuego y rocas cae sobre tus enemigos, no hay escapatoria.",
+        "atk": 2.5,
+        "cost": 20
       },
       {
         "nombre": "Corte Dimensional",
