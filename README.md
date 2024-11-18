@@ -57,14 +57,18 @@ En primera instancia, el juego ofrece 4 ¨clases¨ de personajes para elegir: Ar
  
 
 ## 📖 Glosario:
-- `hp`: puntos de vida
-- `mp`: puntos de energia
-- `atk`: puntos de ataque
-- `mag`: puntos de ataque mágico
-- `def`: puntos de defensa
-- `lk`: puntos de suerte
-- `exp`: contador de experiencia
-- `habilidades`: lo que hace cada personaje.
+| Termino          | Definición                                                                                                                                                                                                                                                                                                                                                   |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| _hp_      | puntos de vida.    
+| _mp_      | puntos de energía. 
+| _atk_      | puntos de ataque. 
+| _mag_      | puntos de ataque mágico. 
+| _agi_      | puntos de agilidad. 
+| _def_      | puntos de defensa. 
+| _lk_      | puntos de suerte. 
+| _exp_      | contador de experiencia. 
+| _habilidades_      | la gracia o lo que hace cada personaje. 
+
             
 
 El trabajo práctico esta dividido en 3 partes. 
