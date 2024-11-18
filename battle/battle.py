@@ -104,7 +104,9 @@ def ac_magia(actor, vs, habilidad):
         if m['nombre'] == habilidad:
             daño = m['atk'] * actor['mag']
             vs['hp'] -= daño
-            print(f"{actor['nombre']} lanzó {habilidad} sobre {vs['nombre']} por un total de {daño} de hp")
+            generar_texto(f"{actor['nombre']} lanzó {habilidad} sobre {vs['nombre']} por un total de {daño} de hp")
+        else:
+            ("No se reconoce la habilidad")
 
 def interfaz(heroe, enemigo):
     print("="*42)
@@ -116,7 +118,10 @@ def interfaz(heroe, enemigo):
 
 def escape(heroe):
     escapada = suerte.tirada((suerte.suerte // 2) + heroe['agi'])
-    return escapada
+    if escapada:
+        generar_texto(f"{heroe['nombre']} logró escapar exitosamente.")
+    else:
+        generar_texto(f"{heroe['nombre']} no logró escapar.")
 
 def minijuego_sobrecarga():
     '''Este minijuego genera una barra que se mueve de derecha a izquierda.
@@ -189,8 +194,9 @@ def acc(heroe, enemigo):
         for habilidad in heroe['habilidades']:
             print(habilidad)
         user = input()
-        user.lower()
-        if user in heroe['habilidades']:
+        print(f"input {user}")
+        print(f"heroe {heroe['habilidades']}")
+        if user.lower() in heroe['habilidades']:
             ac_magia(heroe, enemigo, user)
         else:
             generar_texto(f'Ese conjuro no forma parte del conocimiento de {heroe["nombre"]}')
