@@ -1,8 +1,8 @@
 # 🏰 MEDIE.PY🏰 <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
-## Proyecto juego Role-playing Game Medieval 
 ## TP Programacion 1 - UADE
+## Proyecto Medieval: Juego en python Role-playing Game  
 
-## Índice
+### Índice
 
 * [Objetivo](#objetivo)
 
@@ -17,7 +17,7 @@
 
 ## Objetivo
 
-El objetivo del trabajo practico es aplicar los conocimientos de Python vistos durante la cursada.
+> El objetivo del trabajo practico es aplicar los conocimientos de Python vistos durante la cursada.
 
 ## 🧑‍🤝‍🧑Integrantes del equipo:
 
@@ -43,17 +43,17 @@ El objetivo del trabajo practico es aplicar los conocimientos de Python vistos d
 
 
 ## Primera vez jugando Role-playing Game? 
-En primera instancia, el juego ofrece 4 ¨clases¨ de personajes para elegir: Aragorn, Legolas, Morgana y Gandalf.
+En primera instancia, el juego ofrece 4 _clases_ de personajes para elegir: Aragorn, Legolas, Morgana y Gandalf.
 
  Cada uno de ellos tiene habilidades distintas para desempeñar un rol unico, Guerrero, Arquero, Mago y Healer. 
  
- A su vez, tienen estadisticas base repartidas de forma acorde al rol que cumple cada ¨clase¨.
+ A su vez, tienen estadisticas base repartidas de forma acorde al rol que cumple cada _clase_.
  
- El juego consta de 3 mapas, donde deberemos pelear con distintos enemigos hata llegar al 3er y ultimo mapa donde tendremos la pelea con el jefe final, comunmente conocido como ¨BOSS¨.
+ El juego consta de 3 mapas, donde deberemos pelear con distintos enemigos hata llegar al 3er y ultimo mapa donde tendremos la pelea con el jefe final, comunmente conocido como _Jefe_.
  
  El modo de pelea sera un combate por turnos que esta basado en un sistema de tirada de dados donde el que saque el mayor numero podra efectuar su habilidad exitosamente. 
  
- Sacar un numero alto o bajo, dependera directamente de la estadistica ¨lk¨ (suerte), donde a mayor ¨lk¨ mayor probabilidad tendremos de lanzar una habulidad de forma exitosa.
+ Sacar un numero alto o bajo, dependera directamente de la estadistica _lk_ (suerte), donde a mayor _lk_ mayor probabilidad tendremos de lanzar una habulidad de forma exitosa.
  
 
 ## 📖 Glosario:
@@ -80,37 +80,46 @@ El trabajo práctico esta dividido en 3 partes.
 3) la batalla propiamente dicha entre los personajes.
 
 ## :hammer: Funciones a Desarrollar
-                  
-      Mapa
-      armadoDeMapa     : funcion que genera el mapa 
-      movimientoHeroe  : funcion que permite el movimiento del heroe por el mapa
-      controlDePosicion: controla la posicion del heroe paro controlar si entra en batalla, sale del mapa o cambia de nivel
 
-      Heroe
-      inicializarEstado: inicializar stat del hereo
-      movimiento       : movimiento por el mapa
-      generarDaño      : generar daño
-      recibirDaño      : recbir daño
-      curarse          : curarse hp
-      devolverHP       : devolver hp del heroe
+| Mapa          | Detalle                                                                                                                                                                                                                                                                                                                                                   |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| _armadoDeMapa_      | funcion que genera el mapa.    
+| _movimientoHeroe_      | puntos de energía. 
+| _controlDePosicion_      | controla la posicion del heroe paro controlar si entra en batalla, sale del mapa o cambia de nivel. 
 
-      Suerte
-      shuffle          : barajar 
-      genSuerte        : generar suerte aleatoria
-      tirarda          : tirada del dado virtual
 
-      Batalla
-      ataque           : se materializa el ataque heroe/contrincante o contrincante/heroe
-      defensa          : se materializa la defensa heroe/contrincante o contrincante/heroe
-      esquivar         : se materializa el esquivar heroe/contrincante o contrincante/heroe
+| Heroe          | Detalle                                                                                                                                                                                                                                                                                                                                                   |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| _inicializarEstado_      | inicializar stat del hereo.    
+| _movimiento_      | movimiento por el mapa. 
+| _generarDaño_      | generar daño a un oponente. 
+| _recibirDaño_      | recbir daño. 
+| _curarse_      | curarse hp. 
+| _devolverHP_      | devolver hp del heroe. 
 
-      Partida
-      guardarPartida
-      cargarPartida
+| Suerte          |  Detalle                                                                                                                                                                                                                                                                                                                                               |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| _shuffle_      | barajar.    
+| _genSuerte_      | generar suerte aleatoria. 
+| _tirarda_      | tirada del dado virtual. 
 
-      Jsons
-      heroes           : todos los personajes que se pueden elegir con sus stats
-      enemigos         : todos los enemigos y el jefe final
+| Batalla          | Detalle                                                                                                                                                                                                                                                                                                                                                   |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| _ataque_      | se materializa el ataque heroe/contrincante o contrincante/heroe.    
+| _defensa_      | se materializa la defensa heroe/contrincante o contrincante/heroe. 
+| _esquivar_      |  se materializa el esquivar heroe/contrincante o contrincante/heroe. 
+
+| Partida          | Detalle                                                                                                                                                                                                                                                                                                                                                   |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| _guardarPartida_      | se guardan en un txt los valores del personaje, las stats, el nivel del mapa y el mapa.    
+| _cargarPartida_      | si existe un txt previamente generado, carga los valores al inciar el juego. 
+ 
+| Jsons          | Detalle                                                                                                                                                                                                                                                                                                                                                   |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| _heroes_      | todos los personajes que se pueden elegir con sus stats.    
+| _enemigos_      | todos los enemigos y el jefe final. 
+    
+
 
 ☑️ Distribucion de tareas
 
