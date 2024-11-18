@@ -110,15 +110,13 @@ def controlDePosicion(mapa, posicion, nivel):
 
             global heroeGuardado
             print("¡Has encontrado un contrincante! ¡Preparate para la batalla!")
-            print(heroeGuardado)
-            print(enemigo)
             recompensa = battle.batalla(heroeGuardado, enemigo)
             
             if recompensa['victoria'] == True:
                 progreso(recompensa)
                 mapa[posicion[0]][posicion[1]] = '\U0001F7EB'
             else:
-                print("¡El mundo medio ha caído!")
+                battle.generar_texto("¡El mundo ha caído!")
 
         if mapa[posicion[0]][posicion[1]] == '\U0001F532':
             print(f"¡Has alcanzado la salida! Nivel {nivel} completado.")

@@ -7,9 +7,9 @@
         "cost": 5
       },
       {
-        "nombre": "Bola de fuego",
-        "descripcion": "Conjura una bola de fuego que abrasa el terreno a su paso, ideal para hacer un cerdo a las brazas.",
-        "atk": 7,
+        "nombre": "bola de fuego",
+        "descripcion": "Conjura una bola de fuego que abrasa el terreno a su paso, ideal para esa parrillada de domingo.",
+        "atk": 30,
         "cost": 5
       },
       {
