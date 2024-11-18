@@ -10,7 +10,7 @@
 
 * [Pasos a seguir para probar el trabajo practico](#pasos-a-seguir-para-probar-el-trabajo-practico)
 
-* [Instrucciones del Juego](#instrucciones-del-Juego)
+* [Instrucciones del Juego](#instrucciones-del-juego)
   
 * [Glosario](#glosario)
 
@@ -18,6 +18,13 @@
 ## Objetivo
 
 > El objetivo del trabajo practico es aplicar los conocimientos de Python vistos durante la cursada.
+
+Con una fuerte inspiración sobre videojuegos de Rol japoneses,
+apuntamos a crear una épica que narre por consola
+la historia de nuestro héroe, elegible de un abanico de opciones presentadas al
+usuario,
+que se adentrará en un calabozo lleno de criaturas fantásticas hostiles con las que
+deberá batallar para finalmente llegar a derrotar al tirano Gyanavall.
 
 ## 🧑‍🤝‍🧑Integrantes del equipo:
 
@@ -41,8 +48,6 @@
 
 ## 🎮Instrucciones del Juego 
 
-
-## Primera vez jugando Role-playing Game? 
 En primera instancia, el juego ofrece 4 _clases_ de personajes para elegir: Aragorn, Legolas, Morgana y Gandalf.
 
  Cada uno de ellos tiene habilidades distintas para desempeñar un rol unico, Guerrero, Arquero, Mago y Healer. 
@@ -54,8 +59,37 @@ En primera instancia, el juego ofrece 4 _clases_ de personajes para elegir: Arag
  El modo de pelea sera un combate por turnos que esta basado en un sistema de tirada de dados donde el que saque el mayor numero podra efectuar su habilidad exitosamente. 
  
  Sacar un numero alto o bajo, dependera directamente de la estadistica _lk_ (suerte), donde a mayor _lk_ mayor probabilidad tendremos de lanzar una habulidad de forma exitosa.
+
  
 
+ ⭐ El menú Inicio
+
+<img width="auto" alt="imagen" src="https://github.com/user-attachments/assets/ae3af9af-66ee-4c5c-981a-0efb59c15fee">
+
+
+ 
+ ⭐ Seleccion de Personaje
+
+ 
+<img width="464" alt="imagen (1)" src="https://github.com/user-attachments/assets/ed02178a-45b1-4d1c-b877-dcfc8886b872">
+
+ 
+ ⭐ Mapa
+
+<img width="464" alt="imagen (2)" src="https://github.com/user-attachments/assets/199f2ba4-75a3-40fc-8ffd-267ab1a47821">
+
+ 
+ ⭐ Batalla entre Heroe y Enemigo
+ 
+<img width="464" alt="imagen (3)" src="https://github.com/user-attachments/assets/27091f29-aada-4dac-a2ae-15305b3f9f06">
+
+
+ ⭐ Desafios rompecabezas para avanzar de nivel en tablero
+
+<img width="464" alt="imagen (4)" src="https://github.com/user-attachments/assets/bd515938-6166-482a-9ac7-a9dded41a0e9">
+
+ 
+ 
 ## 📖 Glosario:
 | Termino          | Definición                                                                                                                                                                                                                                                                                                                                                   |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -69,26 +103,17 @@ En primera instancia, el juego ofrece 4 _clases_ de personajes para elegir: Arag
 | _exp_      | contador de experiencia. 
 | _habilidades_      | la gracia o lo que hace cada personaje. 
 
-            
-
-El trabajo práctico esta dividido en 3 partes. 
-
-1) El tablero de juego,
-   
-2) los personajes con sus habilidades y
-   
-3) la batalla propiamente dicha entre los personajes.
 
 ## :hammer: Funciones a Desarrollar
 
-| Mapa          | Detalle                                                                                                                                                                                                                                                                                                                                                   |
+| Mapa          |                                                                                                                                                                                                                                                                                                                                                    |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _armadoDeMapa_      | funcion que genera el mapa.    
 | _movimientoHeroe_      | puntos de energía. 
 | _controlDePosicion_      | controla la posicion del heroe paro controlar si entra en batalla, sale del mapa o cambia de nivel. 
 
 
-| Heroe          | Detalle                                                                                                                                                                                                                                                                                                                                                   |
+| Heroe          |                                                                                                                                                                                                                                                                                                                                                    |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _inicializarEstado_      | inicializar stat del hereo.    
 | _movimiento_      | movimiento por el mapa. 
@@ -97,24 +122,26 @@ El trabajo práctico esta dividido en 3 partes.
 | _curarse_      | curarse hp. 
 | _devolverHP_      | devolver hp del heroe. 
 
-| Suerte          |  Detalle                                                                                                                                                                                                                                                                                                                                               |
+| Suerte          |                                                                                                                                                                                                                                                                                                                                                 |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _shuffle_      | barajar.    
 | _genSuerte_      | generar suerte aleatoria. 
 | _tirarda_      | tirada del dado virtual. 
 
-| Batalla          | Detalle                                                                                                                                                                                                                                                                                                                                                   |
+| Batalla          |                                                                                                                                                                                                                                                                                                                                                    |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _ataque_      | se materializa el ataque heroe/contrincante o contrincante/heroe.    
 | _defensa_      | se materializa la defensa heroe/contrincante o contrincante/heroe. 
 | _esquivar_      |  se materializa el esquivar heroe/contrincante o contrincante/heroe. 
 
-| Partida          | Detalle                                                                                                                                                                                                                                                                                                                                                   |
+## :hammer: Estructuras
+
+| Partida          |                                                                                                                                                                                                                                                                                                                                                    |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _guardarPartida_      | se guardan en un txt los valores del personaje, las stats, el nivel del mapa y el mapa.    
 | _cargarPartida_      | si existe un txt previamente generado, carga los valores al inciar el juego. 
  
-| Jsons          | Detalle                                                                                                                                                                                                                                                                                                                                                   |
+| Jsons          |                                                                                                                                                                                                                                                                                                                                                    |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _heroes_      | todos los personajes que se pueden elegir con sus stats.    
 | _enemigos_      | todos los enemigos y el jefe final. 
@@ -127,5 +154,7 @@ El trabajo práctico esta dividido en 3 partes.
 - Batalla: `Alan`
 - Personajes con sus habilidades, Guardar Partida, Menu Personajes: `Maca`
 
-Si bien cada integrante tiene asignada una tarea del proyecto, colaboramos entre todos en todas las tareas cuando un companero necesite soporte.
+
+> [!NOTE]
+> Si bien cada integrante tiene asignada una tarea del proyecto, colaboramos entre todos en todas las tareas cuando un companero necesite soporte.
 
