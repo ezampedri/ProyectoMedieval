@@ -3,41 +3,8 @@ import json
 
 
 
-def curarse(nombre_heroe):
-    """
-    Funcion para curarse
-
-    Parametros
-    nombre_heore: nombre del heroe a curar
-
-    Retorna
-    Le suma 50 puntos de HP
-    
-    """
-    with open("champions.json", 'r') as archivo:
-        data = json.load(archivo)['heroe']
-        for heroe in data:
-            if data["nombre"] == nombre_heroe:
-                heroe["hp"] +=50
-
-
-def rejuvenecer(nombre_heroe):
-    """
-    Función para rejuvenecer.
-
-    Parámetros:
-    nombre_heroe: Nombre del héroe a rejuvenecer.
-
-    Retorna:
-    Le suma 200 puntos de HP si el héroe es Gandalf y le resta 5 puntos de MP.
-    """
-    with open("champions.json", 'r') as archivo:
-        data = json.load(archivo)['heroe']
-        for heroe in data:
-            if heroe["nombre"] == nombre_heroe:
-                if nombre_heroe == "Gandalf":
-                    heroe["mp"] -= 5
-                    heroe["hp"] += 200
+def curarse(heroe, cantidad=50):
+    heroe["hp"] += cantidad
 
 
 def seleccionarHeroe(nombre_heroe):

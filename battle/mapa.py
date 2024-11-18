@@ -2,6 +2,7 @@ import random
 from types import NoneType
 import keyboard
 from assets import funciones_champion
+import time as t
 from colorama import Fore, Style
 import os
 from battle import partida
@@ -246,30 +247,30 @@ def minijuego_cerradura():
     rb = Fore.RED + abajo + Style.RESET_ALL     # Abajo rojo
     rd = Fore.RED + derecha + Style.RESET_ALL    # Derecha rojo
     ri = Fore.RED + izquierda + Style.RESET_ALL   # Izquierda rojo
-    rojas = [ra, rb, rd, ri]
+    rojas = [ra, rd, rb, ri]
 
     va = Fore.GREEN + arriba + Style.RESET_ALL   # Arriba verde
     vb = Fore.GREEN + abajo + Style.RESET_ALL     # Abajo verde
     vd = Fore.GREEN + derecha + Style.RESET_ALL    # Derecha verde
     vi = Fore.GREEN + izquierda + Style.RESET_ALL   # Izquierda verde
-    verdes = [va, vb, vd, vi]
+    verdes = [va, vd, vb, vi]
 
     aa = Fore.YELLOW + arriba + Style.RESET_ALL   # Arriba amarillo
     ab = Fore.YELLOW + abajo + Style.RESET_ALL     # Abajo amarillo
     ad = Fore.YELLOW + derecha + Style.RESET_ALL    # Derecha amarillo
     ai = Fore.YELLOW + izquierda + Style.RESET_ALL   # Izquierda amarillo
-    azules = [aa, ab, ad, ai]
+    azules = [aa, ad, ab, ai]
 
     solucion = [
-        [vd, rb, ri],  # Fila 0
+        [vd, rb, ra],  # Fila 0
         [va, ab, aa],  # Fila 1
         [ai, rd, vd]   # Fila 2
     ]
 
     puzzle = [
-        [vi, ri, rb],  # Fila 0
-        [vb, ai, ai],  # Fila 1
-        [ad, ra, vi]   # Fila 2
+        [vi, ri, rd],  # Fila 0
+        [vb, ai, ad],  # Fila 1
+        [aa, rb, vi]   # Fila 2
     ]
 
     def girar_flechas(color):
@@ -296,6 +297,10 @@ def minijuego_cerradura():
         for fila in puzzle:
             print(" ".join(fila))
         
+        print("solucion")
+        for fila in solucion:
+            print(" ".join(fila))
+        
         user = input("Ingresa un color para mover(V/R/A): ").lower()
         if user == "v":
             girar_flechas(verdes)
@@ -309,8 +314,12 @@ def minijuego_cerradura():
 
     for fila in puzzle:
         print(" ".join(fila))
+
+
     print("Las magníficas puertas de la sala del trono se abren para ti, eres digno.")
-    
+    t.sleep(3)
+    return funciones_champion.curarse(heroeGuardado, 100)
+
  
 def progreso(recompensa):
     global heroeGuardado
