@@ -2,14 +2,30 @@
 ## Proyecto juego Role-playing Game Medieval 
 ## TP Programacion 1 - UADE
 
-El objetivo del trabajo practico es aplicar los conocimientos de Python vistos durante la cursada.
+## Índice
 
+* [Objetivo](#objetivo)
+
+* [Integrantes del equipo](#integrantes-del-equipo)
+
+* [Pasos a seguir para probar el trabajo practico](#pasos-a-seguir-para-probar-el-trabajo-practico)
+
+* [Instrucciones del Juego](#instrucciones-del-Juego)
+  
+* [Glosario](#glosario)
+
+
+## Objetivo
+
+El objetivo del trabajo practico es aplicar los conocimientos de Python vistos durante la cursada.
 
 ## 🧑‍🤝‍🧑Integrantes del equipo:
 
-Eduardo Zampedri
-Alan Athis
-Macarena Molina
+- Eduardo Zampedri
+
+- Alan Athis
+
+- Macarena Molina
 
 ## 👌 Pasos a seguir para probar el trabajo practico:
 
@@ -40,7 +56,7 @@ En primera instancia, el juego ofrece 4 ¨clases¨ de personajes para elegir: Ar
  Sacar un numero alto o bajo, dependera directamente de la estadistica ¨lk¨ (suerte), donde a mayor ¨lk¨ mayor probabilidad tendremos de lanzar una habulidad de forma exitosa.
  
 
-📖 Glosario:
+## 📖 Glosario:
 - `hp`: puntos de vida
 - `mp`: puntos de energia
 - `atk`: puntos de ataque
