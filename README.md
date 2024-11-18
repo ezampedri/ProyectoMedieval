@@ -93,6 +93,8 @@ Se ingresa el numero acorde al personaje.
 
  ⭐ Desafios rompecabezas para avanzar de nivel en tablero
 
+ Este desafio es una mini cerradura. El jugador debe descifrar como ir de un punto del cuadrado, hasta el otro extremo inferior derecho del cuadrado, a tras de las flechas.
+
 <img width="464" alt="imagen (4)" src="https://github.com/user-attachments/assets/bd515938-6166-482a-9ac7-a9dded41a0e9">
 
  
@@ -163,5 +165,5 @@ Se ingresa el numero acorde al personaje.
 
 
 > [!NOTE]
-> Si bien cada integrante tiene asignada una tarea del proyecto, colaboramos entre todos en todas las tareas cuando un companero necesite soporte.
+> Si bien cada integrante tiene asignada una tarea del proyecto, colaboramos entre todos en todas las tareas cuando un compañero necesite soporte.
 
