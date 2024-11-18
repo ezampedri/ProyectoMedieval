@@ -15,19 +15,18 @@ def generar_texto(texto, velocidad= 0.02):
 
 
 def imprimir_portada():
-    with open('portada.txt', 'r') as file:
+    with open('assets/portada.txt', 'r') as file:
         for line in file:
             print(line, end='')
 
 
-with open('tutorial.txt', 'r') as file:
+with open('assets/tutorial.txt', 'r') as file:
     tutorial = file.read()
+
 # Punto de entrada al juego
 def main():
     while True:
-
         imprimir_portada()
-
         try:
             opcion=int(input('Ingrese una opcion: '))
 

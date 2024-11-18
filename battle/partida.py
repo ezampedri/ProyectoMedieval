@@ -9,11 +9,11 @@ def guardar_partida(mapa, nivel, posicionHeroe, heroe):
         "EstadoPosicionHeroe": posicionHeroe
     }
 
-    with open("partida.json", 'w') as archivo:
+    with open("assets/partida.json", 'w') as archivo:
         json.dump(data, archivo)
 
 
-def cargar_partida(nombre_archivo="partida.json"):
+def cargar_partida(nombre_archivo="assets/partida.json"):
     try:
         with open(nombre_archivo, 'r') as archivo:
             return json.load(archivo)

@@ -3,41 +3,8 @@ import json
 
 
 
-def curarse(nombre_heroe):
-    """
-    Funcion para curarse
-
-    Parametros
-    nombre_heore: nombre del heroe a curar
-
-    Retorna
-    Le suma 50 puntos de HP
-    
-    """
-    with open("champions.json", 'r') as archivo:
-        data = json.load(archivo)['heroe']
-        for heroe in data:
-            if data["nombre"] == nombre_heroe:
-                heroe["hp"] +=50
-
-
-def rejuvenecer(nombre_heroe):
-    """
-    Función para rejuvenecer.
-
-    Parámetros:
-    nombre_heroe: Nombre del héroe a rejuvenecer.
-
-    Retorna:
-    Le suma 200 puntos de MP si el héroe es Gandalf y le resta 5 puntos de HP.
-    """
-    with open("champions.json", 'r') as archivo:
-        data = json.load(archivo)['heroe']
-        for heroe in data:
-            if heroe["nombre"] == nombre_heroe:
-                if nombre_heroe == "Gandalf":
-                    heroe["hp"] -= 5
-                    heroe["mp"] += 200
+def curarse(heroe, cantidad=50):
+    heroe["hp"] += cantidad
 
 
 def seleccionarHeroe(nombre_heroe):
@@ -45,11 +12,11 @@ def seleccionarHeroe(nombre_heroe):
     Función para seleccionar un héroe del archivo JSON.
     """
     try:
-        with open("../ProyectoMedieval/assets/champions.json", 'r') as archivo:
+        with open("..assets/champions.json", 'r') as archivo:
             data = json.load(archivo)
 
         # Acceder al héroe directamente por su nombre
-        heroe = data['heroe'].get(nombre_heroe)
+        heroe = next((h for h in data['heroe'] if h['nombre'] == nombre_heroe), None)
 
         if heroe:
             return heroe
@@ -60,16 +27,52 @@ def seleccionarHeroe(nombre_heroe):
         print(f"No se encontró archivo {archivo.name}")
         return None
 
+import json
 
-#Cargar enemigo desde el json
-def cargar_enemigo(enemigo):
-    enemigoCargado = ''
+def seleccionarHeroe(nombre):
+    try:
+        with open("assets/heroes.json", 'r') as archivo:
+            data = json.load(archivo)
 
-    with open('../ProyectoMedieval/assets/champions.json', 'r') as archivo: 
-        data = json.load(archivo)
-        enemigoCargado = data['enemigo'].get(enemigo)
+        heroe = data['heroe'].get(nombre)
+        if heroe:
+            return heroe
+        else:
+            print(f"No se encontró al héroe: {nombre}")
+            return None
+    except FileNotFoundError:
+        print(f"Sigue roto, no encuentro: {archivo.name}")
+        return None
+    except KeyError as e:
+        print(f"Error de clave: {e}")
+        return None
 
-    return enemigoCargado
+
+
+def cargar_enemigo(nombre_enemigo):
+    """
+    Función para cargar un enemigo del archivo JSON.
+
+    Parámetros:
+    nombre_enemigo: Nombre del enemigo a cargar.
+
+    Retorna:
+    Un diccionario con los datos del enemigo.
+    """
+    try:
+        with open("assets/enemigos.json", 'r') as archivo:
+            data = json.load(archivo)
+
+        enemigo = data.get(nombre_enemigo)
+
+        if enemigo:
+            return enemigo
+        else:
+            print(f"No se encontró al enemigo: {nombre_enemigo}")
+            return None
+    except FileNotFoundError:
+        print(f"No se encontró archivo {archivo.name}")
+        return None
 
 
 # U0001F47D es emoji de heroe 

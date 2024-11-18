@@ -21,15 +21,15 @@ minijuego_sobrecarga: Es un minijuego que se ejecuta para realizar un ataque esp
 generar_texto: Función que imprime texto en pantalla letra por letra, es una ilusion de que el texto se escribe solo. Solo tiene un uso estético.
 interfaz: Función que imprime la interfaz de la batalla, mostrando los nombres de los personajes, sus hp y mp.
 '''
-
+#estos valores hardcodeados solo son para pruebas, en la versión final se cargarán desde un archivo json.
 heroeGuardado = {
-    "nombre": 'Hyrule',
+    "nombre": 'Vincent',
     "hp": 270,
     "mp": 40,
-    "atk": 10,
-    "mag": 15,
+    "atk": 50,
+    "mag": 30,
     "agi": 50,
-    "def": 5,
+    "def": 20,
     "lk": 10,
     "exp": 0,
     "arma": 40,
@@ -38,15 +38,15 @@ heroeGuardado = {
 
 enemigo = {
     'nombre': 'Goblin',
-    "hp": 20,
+    "hp": 60,
     "mp": 20,
-    "atk": 20,
+    "atk": 40,
     "mag": 20,
     "agi": 20,
     "def": 20,
     "lk": 20,
     "exp": 20,
-    "habilidades": ["Rejuvenecer"]
+    "habilidades": ["curar"]
     }
 
 hp_total = heroeGuardado['hp']  # Guardar la vida total del héroe
@@ -98,7 +98,7 @@ def ac_ataque(actor, vs):
             generar_texto(f"{actor['nombre']} falló el ataque.")
 
 def ac_magia(actor, vs, habilidad):
-    with open('../ProyectoMedieval/assets/habilidades.json', 'r') as file:
+    with open('assets/habilidades.json', 'r') as file:
         data = json.load(file)['habilidades']
     for m in data:
         if m['nombre'] == habilidad:
@@ -189,6 +189,7 @@ def acc(heroe, enemigo):
         for habilidad in heroe['habilidades']:
             print(habilidad)
         user = input()
+        user.lower()
         if user in heroe['habilidades']:
             ac_magia(heroe, enemigo, user)
         else:
@@ -230,6 +231,7 @@ def batalla(heroe, enemigo):
         tm.sleep(1.5)
         os.system('cls')
     if enemigo['hp'] <= 0:
+        generar_texto(f"{enemigo['nombre']} ha sido derrotado!")
         recompensa = {
             'victoria': True,
             'xp':r.randint(20, 70)
@@ -241,8 +243,3 @@ def batalla(heroe, enemigo):
         }
 
     return recompensa
-
-
-
-
-batalla(heroeGuardado, enemigo)
