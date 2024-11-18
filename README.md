@@ -20,8 +20,14 @@ Pasos a seguir para probar el trabajo practico:
 
     1- Instalar python
     2- Clonar Repositorio
+    3- Ir al archivo Menu.py y ejecutar el codigo.
+    4- En la consola se iniciará el proyecto. A jugar!
 
 --------------------------------------------------------------------------------------
+## :console: Funciones a Desarrollar
+
+
+
 Primera vez jugando RPG? 
 
 - En primera instancia, el juego ofrece 4 ¨clases¨ de personajes para elegir: Aragorn, Legolas, Morgana y Gandalf.
@@ -73,11 +79,19 @@ El trabajo práctico esta dividido en 3 partes.
       defensa          : se materializa la defensa heroe/contrincante o contrincante/heroe
       esquivar         : se materializa el esquivar heroe/contrincante o contrincante/heroe
 
+      Partida
+      guardarPartida
+      cargarPartida
+
+      Jsons
+      heroes           : todos los personajes que se pueden elegir con sus stats
+      enemigos         : todos los enemigos y el jefe final
+
 Distribucion de tareas
 
 - Tablero de juego o mapa: `Edu`
 - Batalla: `Alan`
-- Personajes con sus habilidades: `Maca`
+- Personajes con sus habilidades, Guardar Partida, Menu Personajes: `Maca`
 
 Si bien cada integrante tiene asignada una tarea del proyecto, colaboramos entre todos en todas las tareas cuando un companero necesite soporte.
 
