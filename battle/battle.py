@@ -21,35 +21,8 @@ minijuego_sobrecarga: Es un minijuego que se ejecuta para realizar un ataque esp
 generar_texto: Función que imprime texto en pantalla letra por letra, es una ilusion de que el texto se escribe solo. Solo tiene un uso estético.
 interfaz: Función que imprime la interfaz de la batalla, mostrando los nombres de los personajes, sus hp y mp.
 '''
-#estos valores hardcodeados solo son para pruebas, en la versión final se cargarán desde un archivo json.
-heroeGuardado = {
-    "nombre": 'Vincent',
-    "hp": 270,
-    "mp": 40,
-    "atk": 50,
-    "mag": 30,
-    "agi": 50,
-    "def": 20,
-    "lk": 10,
-    "exp": 0,
-    "arma": 40,
-    "habilidades": ["Rejuvenecer"]
-    }
 
-enemigo = {
-    'nombre': 'Goblin',
-    "hp": 60,
-    "mp": 20,
-    "atk": 40,
-    "mag": 20,
-    "agi": 20,
-    "def": 20,
-    "lk": 20,
-    "exp": 20,
-    "habilidades": ["curar"]
-    }
-
-hp_total = heroeGuardado['hp']  # Guardar la vida total del héroe
+hp_total = None  # Guardar la vida total del héroe
 
 def generar_texto(texto, velocidad= 0.02):
     for caracter in texto:
@@ -227,6 +200,9 @@ def acc_ai(enemigo, heroe):
 
 #esto encapsula todas las funciones en un solo llamado para ejecutar el programa.
 def batalla(heroe, enemigo):
+    global hp_total
+    hp_total = heroe['hp']
+
     while heroe['hp'] > 0 and enemigo['hp'] > 0:
         interfaz(heroe, enemigo)
         acc(heroe, enemigo)

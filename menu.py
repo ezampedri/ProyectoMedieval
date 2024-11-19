@@ -13,15 +13,14 @@ def generar_texto(texto, velocidad= 0.02):
     print()
 
 
-
 def imprimir_portada():
     with open('assets/portada.txt', 'r') as file:
         for line in file:
             print(line, end='')
 
+    with open('assets/tutorial.txt', 'r') as file:
+        tutorial = file.read()
 
-with open('assets/tutorial.txt', 'r') as file:
-    tutorial = file.read()
 
 # Punto de entrada al juego
 def main():

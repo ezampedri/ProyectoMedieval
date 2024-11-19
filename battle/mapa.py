@@ -159,8 +159,12 @@ def movimientoHeroe(mapa, posicion, nivel):
                         return nuevaPosicion
                     else:
                         print("¡Hay un obstaculo!")
+                        nuevaPosicion = posicion
+                        return nuevaPosicion
                 else:
                     print("¡No puedes salir del mapa!")
+                    nuevaPosicion = posicion
+                    return nuevaPosicion
             else:
                 if move == 'm':
                     menuContextual(mapa, posicion, nivel)
@@ -187,6 +191,7 @@ def menuContextual(mapa, posicion, nivel):
                     nivelGuardado = nivel
                     posicionHeroeGuardado = posicion
                     partida.guardar_partida(mapaGuardado, nivelGuardado, posicionHeroeGuardado, heroeGuardado)
+                    print('Partida guardada exitosamente')
                     salirWhile = True
                 elif opcion == 2:
                     exit()
@@ -216,13 +221,12 @@ def iniciarMapa(nivel, heroe, restaurar):
         mapa = mapaGuardado
         nivel = nivelGuardado
         heroe = heroeGuardado
-        posicionHeroe = posicionHeroeGuardado
+        posicionHeroe = tuple(posicionHeroeGuardado)
 
     while salidaAlcanzada == False:
         imprimirMapa(mapa, posicionHeroe)
         posicionHeroe = movimientoHeroe(mapa, posicionHeroe, nivel)
         salidaAlcanzada = controlDePosicion(mapa, posicionHeroe, nivel)
-        #os.system('cls')
 
 
 # Iniciar juego guardado
