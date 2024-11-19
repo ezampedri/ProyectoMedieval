@@ -1,35 +1,45 @@
 {
-    "Goblin": {
-        "nombre": "Goblin",
-        "hp": 20,
-        "mp": 20,
-        "atk": 20,
-        "mag": 20,
-        "agi": 20,
-        "def": 20,
-        "lk": 20,
-        "exp": 20
-    },
-    "Orco": {
-        "nombre": "Orco",
-        "hp": 100,
-        "mp": 20,
-        "atk": 50,
-        "mag": 20,
-        "agi": 30,
-        "def": 20,
-        "lk": 20,
-        "exp": 20
-    },
-    "Drafnakk, Tirano de Gyanavall": {
-        "nombre": "Drafnakk, Tirano de Gyanavall",
-        "hp": 500,
-        "mp": 20,
-        "atk": 20,
-        "mag": 20,
-        "agi": 20,
-        "def": 20,
-        "lk": 20,
-        "exp": 20
+    "enemigos": {
+        "Goblin": {
+            "nombre": "Goblin",
+            "hp": 20,
+            "mp": 20,
+            "atk": 20,
+            "mag": 20,
+            "agi": 20,
+            "def": 5,
+            "lk": 20,
+            "exp": 20,
+            "habilidades": [
+            ]
+        },
+        "Orco": {
+            "nombre": "Orco",
+            "hp": 100,
+            "mp": 20,
+            "atk": 50,
+            "mag": 20,
+            "agi": 30,
+            "def": 20,
+            "lk": 20,
+            "exp": 20,
+            "habilidades": [
+            ]
+        },
+        "Drafnakk, Tirano de Gyanavall": {
+            "nombre": "Drafnakk, Tirano de Gyanavall",
+            "hp": 500,
+            "mp": 20,
+            "atk": 20,
+            "mag": 40,
+            "agi": 20,
+            "def": 20,
+            "lk": 20,
+            "exp": 20,
+            "habilidades": [
+                "curar"
+            ]
+        }
     }
 }
+ 

@@ -7,28 +7,6 @@ def curarse(heroe, cantidad=50):
     heroe["hp"] += cantidad
 
 
-def seleccionarHeroe(nombre_heroe):
-    """
-    Función para seleccionar un héroe del archivo JSON.
-    """
-    try:
-        with open("..assets/champions.json", 'r') as archivo:
-            data = json.load(archivo)
-
-        # Acceder al héroe directamente por su nombre
-        heroe = next((h for h in data['heroe'] if h['nombre'] == nombre_heroe), None)
-
-        if heroe:
-            return heroe
-        else:
-            print(f"No se encontró al héroe: {nombre_heroe}")
-            return None
-    except FileNotFoundError:
-        print(f"No se encontró archivo {archivo.name}")
-        return None
-
-import json
-
 def seleccionarHeroe(nombre):
     try:
         with open("assets/heroes.json", 'r') as archivo:
@@ -62,8 +40,7 @@ def cargar_enemigo(nombre_enemigo):
     try:
         with open("assets/enemigos.json", 'r') as archivo:
             data = json.load(archivo)
-
-        enemigo = data.get(nombre_enemigo)
+        enemigo = data["enemigos"].get(nombre_enemigo)
 
         if enemigo:
             return enemigo
