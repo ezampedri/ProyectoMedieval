@@ -42,9 +42,11 @@ deberá batallar para finalmente llegar a derrotar al tirano Gyanavall.
 
       git clone https://github.com/ezampedri/ProyectoMedieval.git
       
-3- Ir al archivo Menu.py y ejecutar el codigo.
+3- Ir al archivo Main.py y ejecutar el codigo.
 
-4- En la consola se iniciará el proyecto. A jugar!
+4- En la consola se iniciará el proyecto. 
+
+5- A jugar!
 
 ## 🎮Instrucciones del Juego 
 
@@ -64,27 +66,39 @@ En primera instancia, el juego ofrece 4 _clases_ de personajes para elegir: Arag
 
  ⭐ El menú Inicio
 
+ Si es la primera vez jugando, se crea una nueva partida. Se ingresa el numero 1 en la terminal del proyecto.
+
 <img width="auto" alt="imagen" src="https://github.com/user-attachments/assets/ae3af9af-66ee-4c5c-981a-0efb59c15fee">
 
 
  
  ⭐ Seleccion de Personaje
 
+Se ingresa el numero acorde al personaje.
+El juego ofrece 4 _clases_ de personajes para elegir: Aragorn, Legolas, Morgana y Gandalf.
+Cada uno de ellos tiene habilidades distintas para desempeñar un rol unico, Guerrero, Arquero, Mago y Healer.
  
 <img width="464" alt="imagen (1)" src="https://github.com/user-attachments/assets/ed02178a-45b1-4d1c-b877-dcfc8886b872">
 
  
  ⭐ Mapa
+ 
+ El mapa posee una salida, al personaje, enemigos y obstaculos. Nuestro personaje esta identificado con un mago azul, la salida es el cuadrado blanco, los enemigos son las calaveras y los obstaculos son los arboles y los ladrillos. Debemos movernos con las teclas AWSD para llegar a la salida. Cuando nos crucemos con una calavera, se ejecuta automaticamente la batalla. Debemos ganarla si o si para avanzar el casillero.
 
 <img width="464" alt="imagen (2)" src="https://github.com/user-attachments/assets/199f2ba4-75a3-40fc-8ffd-267ab1a47821">
 
  
  ⭐ Batalla entre Heroe y Enemigo
+
+ Una vez que chocas con una calavera (enemigo) comienza la batalla. El objetivo es que uses tus habilidades para atacar al enemigo y dejarle la vida en cero.
+ Cuando lo derrotes, avanzas en el tablero.
  
 <img width="464" alt="imagen (3)" src="https://github.com/user-attachments/assets/27091f29-aada-4dac-a2ae-15305b3f9f06">
 
 
  ⭐ Desafios rompecabezas para avanzar de nivel en tablero
+
+ Este desafio es una mini cerradura. El jugador debe descifrar como ir de un punto del cuadrado, hasta el otro extremo inferior derecho del cuadrado, a tras de las flechas.
 
 <img width="464" alt="imagen (4)" src="https://github.com/user-attachments/assets/bd515938-6166-482a-9ac7-a9dded41a0e9">
 
@@ -150,11 +164,11 @@ En primera instancia, el juego ofrece 4 _clases_ de personajes para elegir: Arag
 
 ☑️ Distribucion de tareas
 
-- Tablero de juego o mapa: `Edu`
-- Batalla: `Alan`
+- Tablero de juego o mapa, cargar estados de la partida guardada y guardar estados, test: `Edu`
+- Batalla, funciones, habilidades y mini juego cerradura, test: `Alan`
 - Personajes con sus habilidades, Guardar Partida, Menu Personajes: `Maca`
 
 
 > [!NOTE]
-> Si bien cada integrante tiene asignada una tarea del proyecto, colaboramos entre todos en todas las tareas cuando un companero necesite soporte.
+> Si bien cada integrante tiene asignada una tarea del proyecto, colaboramos entre todos en todas las tareas cuando un compañero necesite soporte.
 
