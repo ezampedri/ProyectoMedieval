@@ -298,13 +298,10 @@ def minijuego_cerradura():
 
     while puzzle != solucion:
         # Imprimir el puzzle
+        print("Resuelve el puzzle para abrir la puerta, debes crear un camino de flechas hacía el otro lado.")
         for fila in puzzle:
             print(" ".join(fila))
-        
-        print("solucion")
-        for fila in solucion:
-            print(" ".join(fila))
-        
+    
         user = input("Ingresa un color para mover(V/R/A): ").lower()
         if user == "v":
             girar_flechas(verdes)
@@ -320,7 +317,7 @@ def minijuego_cerradura():
         print(" ".join(fila))
 
 
-    print("Las magníficas puertas de la sala del trono se abren para ti, eres digno.")
+    battle.generar_texto("Las magníficas puertas de la sala del trono se abren para ti, eres digno.")
     t.sleep(3)
     return funciones_champion.curarse(heroeGuardado, 100)
 
