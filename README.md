@@ -75,6 +75,8 @@ En primera instancia, el juego ofrece 4 _clases_ de personajes para elegir: Arag
  ⭐ Seleccion de Personaje
 
 Se ingresa el numero acorde al personaje.
+El juego ofrece 4 _clases_ de personajes para elegir: Aragorn, Legolas, Morgana y Gandalf.
+Cada uno de ellos tiene habilidades distintas para desempeñar un rol unico, Guerrero, Arquero, Mago y Healer.
  
 <img width="464" alt="imagen (1)" src="https://github.com/user-attachments/assets/ed02178a-45b1-4d1c-b877-dcfc8886b872">
 
@@ -87,6 +89,9 @@ Se ingresa el numero acorde al personaje.
 
  
  ⭐ Batalla entre Heroe y Enemigo
+
+ Una vez que chocas con una calavera (enemigo) comienza la batalla. El objetivo es que uses tus habilidades para atacar al enemigo y dejarle la vida en cero.
+ Cuando lo derrotes, avanzas en el tablero.
  
 <img width="464" alt="imagen (3)" src="https://github.com/user-attachments/assets/27091f29-aada-4dac-a2ae-15305b3f9f06">
 
@@ -159,8 +164,8 @@ Se ingresa el numero acorde al personaje.
 
 ☑️ Distribucion de tareas
 
-- Tablero de juego o mapa: `Edu`
-- Batalla: `Alan`
+- Tablero de juego o mapa, cargar estados de la partida guardada y guardar estados, test: `Edu`
+- Batalla, funciones, habilidades y mini juego cerradura, test: `Alan`
 - Personajes con sus habilidades, Guardar Partida, Menu Personajes: `Maca`
 
 
