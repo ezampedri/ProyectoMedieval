@@ -150,17 +150,18 @@ Cada uno de ellos tiene habilidades distintas para desempeñar un rol unico, Gue
 
 ## :hammer: Estructuras
 
-| Partida          |                                                                                                                                                                                                                                                                                                                                                    |
-|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| _guardarPartida_      | se guardan en un txt los valores del personaje, las stats, el nivel del mapa y el mapa.    
-| _cargarPartida_      | si existe un txt previamente generado, carga los valores al inciar el juego. 
  
 | Jsons          |                                                                                                                                                                                                                                                                                                                                                    |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _heroes_      | todos los personajes que se pueden elegir con sus stats.    
 | _enemigos_      | todos los enemigos y el jefe final. 
     
+## :hammer: Funcionalidades
 
+| Partida          |                                                                                                                                                                                                                                                                                                                                                    |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| _Guardar Partida_      | se guardan en un txt los valores del personaje, las stats, el nivel del mapa y el mapa.    
+| _Cargar Partida_      | si existe un txt previamente generado, carga los valores al inciar el juego. 
 
 ☑️ Distribucion de tareas
 
