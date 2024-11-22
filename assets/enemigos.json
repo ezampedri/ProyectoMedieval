@@ -26,14 +26,27 @@
             "habilidades": [
             ]
         },
+        "Troll": {
+            "nombre": "Troll",
+            "hp": 200,
+            "mp": 30,
+            "atk": 30,
+            "mag": 25,
+            "agi": 35,
+            "def": 30,
+            "lk": 25,
+            "exp": 50,
+            "habilidades": [
+            ]
+        },
         "Drafnakk, Tirano de Gyanavall": {
             "nombre": "Drafnakk, Tirano de Gyanavall",
             "hp": 500,
-            "mp": 20,
-            "atk": 20,
+            "mp": 40,
+            "atk": 40,
             "mag": 40,
-            "agi": 20,
-            "def": 20,
+            "agi": 40,
+            "def": 40,
             "lk": 20,
             "exp": 20,
             "habilidades": [

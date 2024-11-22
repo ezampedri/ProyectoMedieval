@@ -7,7 +7,8 @@ from colorama import Fore, Style
 import os
 from battle import partida
 from battle import battle
-import json
+import msvcrt
+
 
 # U0001F7EB es tierra
 # U0001F9D9 es heroe
@@ -22,13 +23,17 @@ nivelGuardado = None
 posicionHeroeGuardado = None
 heroeGuardado = None
 
-def armadoDeMapa(filas, columnas):
+def limpiarBuffer():
+    msvcrt.getch()
+
+
+def armadoDeMapa(filas, columnas, nivel):
     #Se llena la matriz FxC con tierra lo que representa el piso del mapa
     mapa = [['\U0001F7EB' for _ in range(columnas)] for _ in range(filas)] 
 
     #Calculo de arboles (A) y paredes (P) para agregar
-    cantidadArboles = (filas * columnas) // 5
-    cantidadParedes = (filas * columnas) // 5
+    cantidadArboles = (filas * columnas) // 6
+    cantidadParedes = (filas * columnas) // 6
     cantidadContrincantes = (filas * columnas) // 7
     cantidadSalidas=1
 
@@ -37,50 +42,56 @@ def armadoDeMapa(filas, columnas):
     contadorContrincantesColocados=0
     contadorSalidasColocadas=0
 
-    #Se colocan los arboles en posiciones random (x,y) que no coincidan con otros arboles, pared o posicion x,y=(0,0) donde inicia el Heroe 
-    while contadorArbolesColocados < cantidadArboles:
-        x, y = random.randint(0, filas-1), random.randint(0, columnas-1)
-        if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB':  
-            mapa[x][y] = '\U0001F333'
-            contadorArbolesColocados+=1
-            
-    #Se colocan las paredes en posiciones random (x,y) que no coincidan con otros arboles, pared o posicion x,y=(0,0) donde inicia el Heroe
-    while contadorParedesColocadas < cantidadParedes:
-        x, y = random.randint(0, filas-1), random.randint(0, columnas-1)
-        if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB':  
-            mapa[x][y] = '\U0001F9F1'
-            contadorParedesColocadas+=1
+    if nivel != 4:
+        #Se colocan los arboles en posiciones random (x,y) que no coincidan con otros arboles, pared o posicion x,y=(0,0) donde inicia el Heroe 
+        while contadorArbolesColocados < cantidadArboles:
+            x, y = random.randint(0, filas-1), random.randint(0, columnas-1)
+            if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB':  
+                mapa[x][y] = '\U0001F333'
+                contadorArbolesColocados+=1
+                
+        #Se colocan las paredes en posiciones random (x,y) que no coincidan con otros arboles, pared o posicion x,y=(0,0) donde inicia el Heroe
+        while contadorParedesColocadas < cantidadParedes:
+            x, y = random.randint(0, filas-1), random.randint(0, columnas-1)
+            if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB':  
+                mapa[x][y] = '\U0001F9F1'
+                contadorParedesColocadas+=1
 
-    #Se colocan los contrincantes en posiciones random (x,y) que no coincidan con otros arboles, pared o posicion x,y=(0,0) donde inicia el Heroe
-    while contadorContrincantesColocados < cantidadContrincantes:
-        x, y = random.randint(0, filas-1), random.randint(0, columnas-1)
-        if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB':  
-            mapa[x][y] = '\U0001F480'
-            contadorContrincantesColocados+=1
+        #Se colocan los salidas en posiciones random (x,y) que no coincidan con otros arboles, pared, contrincante o posicion x,y=(0,0) donde inicia el Heroe
+        salida = (0, 0)
+        while contadorSalidasColocadas < cantidadSalidas:
+            x, y = random.randint(filas//2, filas-1), random.randint(0, columnas-1)
+            if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB':  
+                mapa[x][y] = '\U0001F532'
+                salida = (x, y)
+                contadorSalidasColocadas+=1
 
-    #Se colocan los salidas en posiciones random (x,y) que no coincidan con otros arboles, pared, contrincante o posicion x,y=(0,0) donde inicia el Heroe
-    salida = (0, 0)
-    while contadorSalidasColocadas < cantidadSalidas:
-        x, y = random.randint(filas//2, filas-1), random.randint(0, columnas-1)
-        if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB':  
-            mapa[x][y] = '\U0001F532'
-            salida = (x, y)
-            contadorSalidasColocadas+=1
+        #Camino seguro: Se quitan obstaculos para que el Heroe tenga acceso a la salida y esta no quede bloqueada
+        caminoSeguro = (0, 0)
+        xSalida, ySalida = salida[0], salida[1]
+        while caminoSeguro < salida:
+            x, y = caminoSeguro[0], caminoSeguro[1]
+            if x < xSalida:
+                x += 1
+                if mapa[x][y] != '\U0001F532':
+                    mapa[x][y] = '\U0001F7EB'
+            elif y < ySalida:
+                y += 1
+                if mapa[x][y] != '\U0001F532':
+                    mapa[x][y] = '\U0001F7EB'
+            caminoSeguro = (x, y)
 
-    #Camino seguro: Se quitan obstaculos para que el Heroe tenga acceso a la salida y esta no quede bloqueada
-    caminoSeguro = (0, 0)
-    xSalida, ySalida = salida[0], salida[1]
-    while caminoSeguro < salida:
-        x, y = caminoSeguro[0], caminoSeguro[1]
-        if x < xSalida:
-            x += 1
-            if mapa[x][y] != '\U0001F532':
-                mapa[x][y] = '\U0001F7EB'
-        elif y < ySalida:
-            y += 1
-            if mapa[x][y] != '\U0001F532':
-                mapa[x][y] = '\U0001F7EB'
-        caminoSeguro = (x, y)
+        #Se colocan los contrincantes en posiciones random (x,y) que no coincidan con otros arboles, pared o posicion x,y=(0,0) donde inicia el Heroe
+        while contadorContrincantesColocados < cantidadContrincantes:
+            x, y = random.randint(0, filas-1), random.randint(0, columnas-1)
+            if (x, y) != (0, 0) and mapa[x][y] == '\U0001F7EB' and mapa[x][y] != '\U0001F532':  
+                mapa[x][y] = '\U0001F480'
+                contadorContrincantesColocados+=1
+    else:
+        mapa = [['\U0001F9F1' for _ in range(columnas)] for _ in range(filas)]
+        mapa[1][2] = '\U0001F7EB'
+        mapa[2][2] = '\U0001F480' #Jefe final
+        mapa[3][2] = '\U0001F532' #Salida
         
     return mapa
 
@@ -107,10 +118,17 @@ def controlDePosicion(mapa, posicion, nivel):
             elif nivel == 2:
                 enemigo = funciones_champion.cargar_enemigo('Orco')
             elif nivel == 3:
+                enemigo = funciones_champion.cargar_enemigo('Troll')
+            elif nivel == 4:
                 enemigo = funciones_champion.cargar_enemigo('Drafnakk, Tirano de Gyanavall')
 
             global heroeGuardado
-            print("¡Has encontrado un contrincante! ¡Preparate para la batalla!")
+
+            if nivel != 4:
+                print("¡Has encontrado un contrincante! ¡Preparate para la batalla!")
+            else:
+                print("El suelo tiembla y un rugido estremecedor rompe el silencio. ¡Has desafiado a Drafnakk, el Tirano de Gyanavall! No habrá escapatoria... Esta será la batalla de tu vida.")
+
             recompensa = battle.batalla(heroeGuardado, enemigo)
             
             if recompensa['victoria'] == True:
@@ -156,17 +174,21 @@ def movimientoHeroe(mapa, posicion, nivel):
                 # Control de posición para evitar salir del mapa o moverse a un obstáculo
                 if 0 <= nuevaPosicion[0] < filas and 0 <= nuevaPosicion[1] < columnas:
                     if mapa[nuevaPosicion[0]][nuevaPosicion[1]] not in ['\U0001F333', '\U0001F9F1']:
+                        limpiarBuffer()
                         return nuevaPosicion
                     else:
                         print("¡Hay un obstaculo!")
                         nuevaPosicion = posicion
+                        limpiarBuffer()
                         return nuevaPosicion
                 else:
                     print("¡No puedes salir del mapa!")
                     nuevaPosicion = posicion
+                    limpiarBuffer()
                     return nuevaPosicion
             else:
                 if move == 'm':
+                    limpiarBuffer()
                     menuContextual(mapa, posicion, nivel)
                 else:
                     print("Movimiento invalido")
@@ -191,9 +213,11 @@ def menuContextual(mapa, posicion, nivel):
                     nivelGuardado = nivel
                     posicionHeroeGuardado = posicion
                     partida.guardar_partida(mapaGuardado, nivelGuardado, posicionHeroeGuardado, heroeGuardado)
-                    print('Partida guardada exitosamente')
+                    print('Partida guardada exitosamente, mueva el heroe para continuar el juego')
+                    limpiarBuffer()
                     salirWhile = True
                 elif opcion == 2:
+                    limpiarBuffer()
                     exit()
                 else:
                     print('Opcion invalida')
@@ -207,13 +231,19 @@ def iniciarMapa(nivel, heroe, restaurar):
     heroeGuardado = heroe
 
     if nivel == 1:
-        mapa = armadoDeMapa(10, 15)
+        mapa = armadoDeMapa(10, 15, nivel)
     elif nivel == 2:
-        mapa = armadoDeMapa(15, 20)
+        mapa = armadoDeMapa(15, 20, nivel)
+    elif nivel == 3:
+        mapa = armadoDeMapa(20, 25, nivel)
     else:
-        mapa = armadoDeMapa(20, 25)
+        mapa = armadoDeMapa(5, 5, nivel)
 
-    posicionHeroe = (0, 0)
+    if nivel != 4:
+        posicionHeroe = (0, 0)
+    else:
+        posicionHeroe = (0, 2)
+
     salidaAlcanzada = False
 
     if restaurar == True:

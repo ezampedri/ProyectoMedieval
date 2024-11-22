@@ -18,8 +18,9 @@ def imprimir_portada():
         for line in file:
             print(line, end='')
 
-    with open('assets/tutorial.txt', 'r') as file:
-        tutorial = file.read()
+
+with open('assets/tutorial.txt', 'r') as file:
+    tutorial = file.read()
 
 
 # Punto de entrada al juego
@@ -27,6 +28,8 @@ def main():
     while True:
         imprimir_portada()
         try:
+            print()
+            print()
             opcion=int(input('Ingrese una opcion: '))
 
             if opcion == 1:
@@ -35,8 +38,9 @@ def main():
                 if heroe != None:
                     mapa.iniciarMapa(1, heroe, False)
                     mapa.iniciarMapa(2, heroe, False)
-                    mapa.minijuego_cerradura()
                     mapa.iniciarMapa(3, heroe, False)
+                    mapa.minijuego_cerradura()
+                    mapa.iniciarMapa(4, heroe, False)
                 else:
                     print('No ha seleccionado heroe')
             elif opcion == 2:
