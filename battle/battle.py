@@ -207,11 +207,12 @@ def batalla(heroe, enemigo):
         interfaz(heroe, enemigo)
         acc(heroe, enemigo)
         tm.sleep(1.5)
-        os.system('cls')
+        #os.system('cls')
         interfaz(heroe, enemigo)
         acc_ai(enemigo, heroe)
         tm.sleep(1.5)
-        os.system('cls')
+        #os.system('cls')
+
     if enemigo['hp'] <= 0:
         generar_texto(f"{enemigo['nombre']} ha sido derrotado!")
         recompensa = {

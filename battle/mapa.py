@@ -115,36 +115,42 @@ def controlDePosicion(mapa, posicion, nivel):
         if mapa[posicion[0]][posicion[1]] == '\U0001F480':
             if nivel == 1:
                 enemigo = funciones_champion.cargar_enemigo('Goblin')
+                print()
+                battle.generar_texto("¡Un Goblin escurridizo aparece de entre las sombras! Su risa burlona resuena mientras te prepara una trampa")
             elif nivel == 2:
                 enemigo = funciones_champion.cargar_enemigo('Orco')
+                print()
+                battle.generar_texto("Un imponente Orco emerge del bosque, blandiendo su enorme hacha con una mirada desafiante. ¡Prepárate para una batalla brutal contra este coloso!")
             elif nivel == 3:
                 enemigo = funciones_champion.cargar_enemigo('Troll')
+                print()
+                battle.generar_texto("El suelo tiembla bajo tus pies mientras un Troll gigantesco avanza lentamente hacia ti. Su gruñido profundo anuncia un combate feroz. ")
             elif nivel == 4:
                 enemigo = funciones_champion.cargar_enemigo('Drafnakk, Tirano de Gyanavall')
+                print()
+                battle.generar_texto("El suelo tiembla y un rugido estremecedor rompe el silencio. ¡Has desafiado a Drafnakk, el Tirano de Gyanavall! No habrá escapatoria... Esta será la batalla de tu vida.")
 
             global heroeGuardado
-
-            if nivel != 4:
-                print("¡Has encontrado un contrincante! ¡Preparate para la batalla!")
-            else:
-                print("El suelo tiembla y un rugido estremecedor rompe el silencio. ¡Has desafiado a Drafnakk, el Tirano de Gyanavall! No habrá escapatoria... Esta será la batalla de tu vida.")
-
             recompensa = battle.batalla(heroeGuardado, enemigo)
-            
+
             if recompensa['victoria'] == True:
                 progreso(recompensa)
                 mapa[posicion[0]][posicion[1]] = '\U0001F7EB'
             else:
+                print()
                 battle.generar_texto("¡El mundo ha caído!")
+                salidaAlcanzada = True
 
         if mapa[posicion[0]][posicion[1]] == '\U0001F532':
+            print()
             print(f"¡Has alcanzado la salida! Nivel {nivel} completado.")
             salidaAlcanzada = True
 
-        return salidaAlcanzada
+        return salidaAlcanzada, mapa
     except BaseException:
+        print()
         print('Movimiento invalido')
-        return salidaAlcanzada
+        return salidaAlcanzada, mapa
         
 
 
@@ -167,6 +173,7 @@ def movimientoHeroe(mapa, posicion, nivel):
 
         if eventoTecla.event_type == 'down':
             move = eventoTecla.name.lower()
+            limpiarBuffer()
 
             if move in movimientos:
                 nuevaPosicion = (posicion[0] + movimientos[move][0], posicion[1] + movimientos[move][1])
@@ -174,23 +181,22 @@ def movimientoHeroe(mapa, posicion, nivel):
                 # Control de posición para evitar salir del mapa o moverse a un obstáculo
                 if 0 <= nuevaPosicion[0] < filas and 0 <= nuevaPosicion[1] < columnas:
                     if mapa[nuevaPosicion[0]][nuevaPosicion[1]] not in ['\U0001F333', '\U0001F9F1']:
-                        limpiarBuffer()
                         return nuevaPosicion
                     else:
+                        print()
                         print("¡Hay un obstaculo!")
                         nuevaPosicion = posicion
-                        limpiarBuffer()
                         return nuevaPosicion
                 else:
+                    print()
                     print("¡No puedes salir del mapa!")
                     nuevaPosicion = posicion
-                    limpiarBuffer()
                     return nuevaPosicion
             else:
                 if move == 'm':
-                    limpiarBuffer()
                     menuContextual(mapa, posicion, nivel)
                 else:
+                    print()
                     print("Movimiento invalido")
 
     
@@ -213,15 +219,17 @@ def menuContextual(mapa, posicion, nivel):
                     nivelGuardado = nivel
                     posicionHeroeGuardado = posicion
                     partida.guardar_partida(mapaGuardado, nivelGuardado, posicionHeroeGuardado, heroeGuardado)
-                    print('Partida guardada exitosamente, mueva el heroe para continuar el juego')
                     limpiarBuffer()
+                    print()
+                    print('Partida guardada exitosamente. Mueva el heroe para continuar el juego')
                     salirWhile = True
                 elif opcion == 2:
-                    limpiarBuffer()
                     exit()
                 else:
+                    print()
                     print('Opcion invalida')
             except ValueError:
+                print()
                 print('Opcion invalida')
 
 
@@ -229,6 +237,8 @@ def menuContextual(mapa, posicion, nivel):
 def iniciarMapa(nivel, heroe, restaurar):
     global heroeGuardado 
     heroeGuardado = heroe
+    posicionHeroe = (0, 0)
+    salidaAlcanzada = False
 
     if nivel == 1:
         mapa = armadoDeMapa(10, 15, nivel)
@@ -238,13 +248,7 @@ def iniciarMapa(nivel, heroe, restaurar):
         mapa = armadoDeMapa(20, 25, nivel)
     else:
         mapa = armadoDeMapa(5, 5, nivel)
-
-    if nivel != 4:
-        posicionHeroe = (0, 0)
-    else:
         posicionHeroe = (0, 2)
-
-    salidaAlcanzada = False
 
     if restaurar == True:
         global mapaGuardado, nivelGuardado, posicionHeroeGuardado
@@ -256,7 +260,7 @@ def iniciarMapa(nivel, heroe, restaurar):
     while salidaAlcanzada == False:
         imprimirMapa(mapa, posicionHeroe)
         posicionHeroe = movimientoHeroe(mapa, posicionHeroe, nivel)
-        salidaAlcanzada = controlDePosicion(mapa, posicionHeroe, nivel)
+        salidaAlcanzada, mapa = controlDePosicion(mapa, posicionHeroe, nivel)
 
 
 # Iniciar juego guardado
@@ -355,7 +359,7 @@ def minijuego_cerradura():
 def progreso(recompensa):
     global heroeGuardado
     heroeGuardado['exp'] += recompensa['xp']
-    if heroeGuardado['xp'] > 100:
+    if heroeGuardado['exp'] > 100:
         battle.generar_texto('Sientes una gran fuerza aflorando desde tu interior'),
         heroeGuardado['hp'] *= 1.15
         heroeGuardado['hp'] // 1
