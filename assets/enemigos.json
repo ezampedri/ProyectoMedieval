@@ -2,7 +2,7 @@
     "enemigos": {
         "Goblin": {
             "nombre": "Goblin",
-            "hp": 20,
+            "hp": 40,
             "mp": 20,
             "atk": 20,
             "mag": 20,
@@ -47,7 +47,7 @@
             "mag": 40,
             "agi": 40,
             "def": 40,
-            "lk": 20,
+            "lk": 35,
             "exp": 20,
             "habilidades": [
                 "curar"

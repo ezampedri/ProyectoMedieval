@@ -6,6 +6,7 @@ import os
 import sys
 import time as tm
 
+
 def generar_texto(texto, velocidad=0.02):
     for caracter in texto:
         if keyboard.is_pressed('space'):
@@ -26,6 +27,7 @@ def imprimir_portada():
 
 with open('assets/tutorial.txt', 'r', encoding='utf-8') as file:
     tutorial = file.read()
+
 
 with open('assets/intro.txt', 'r', encoding='utf-8') as file:
     intro = file.read()

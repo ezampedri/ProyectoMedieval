@@ -26,6 +26,11 @@ heroeGuardado = None
 def limpiarBuffer():
     msvcrt.getch()
 
+def imprimirGameOver():
+    with open('assets/game_over.txt', 'r') as file:
+        for line in file:
+            print(line, end='')
+
 
 def armadoDeMapa(filas, columnas, nivel):
     #Se llena la matriz FxC con tierra lo que representa el piso del mapa
@@ -138,9 +143,10 @@ def controlDePosicion(mapa, posicion, nivel):
                 progreso(recompensa)
                 mapa[posicion[0]][posicion[1]] = '\U0001F7EB'
             else:
-                print()
                 battle.generar_texto("¡El mundo ha caído!")
-                salidaAlcanzada = True
+                print()
+                imprimirGameOver()
+                exit()
 
         if mapa[posicion[0]][posicion[1]] == '\U0001F532':
             print()
@@ -148,6 +154,9 @@ def controlDePosicion(mapa, posicion, nivel):
             salidaAlcanzada = True
 
         return salidaAlcanzada, mapa
+    
+    except SystemExit:
+        exit()
     except BaseException:
         print()
         print('Movimiento invalido')
