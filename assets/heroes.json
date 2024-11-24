@@ -1,7 +1,7 @@
 {
     "heroe": {
-        "Gandalf": {
-            "nombre": "Gandalf",
+        "Alballus": {
+            "nombre": "Alballus",
             "clase": "Sanador",
             "hp": 270,
             "mp": 40,
@@ -15,8 +15,8 @@
                 "rejuvenecer", "bola de fuego"
             ]
         },
-        "Aragorn": {
-            "nombre": "Aragorn",
+        "Aiken": {
+            "nombre": "Aiken",
             "clase": "Guerrero",
             "hp": 350,
             "mp": 25,
@@ -46,8 +46,8 @@
                 "bola de fuego", "cataclismo"
             ]
         },
-        "Legolas": {
-            "nombre": "Legolas",
+        "Udnorn": {
+            "nombre": "Udnorn",
             "clase": "Arquero",
             "hp": 250,
             "mp": 50,

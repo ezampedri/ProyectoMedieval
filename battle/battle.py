@@ -24,12 +24,16 @@ interfaz: Función que imprime la interfaz de la batalla, mostrando los nombres 
 
 hp_total = None  # Guardar la vida total del héroe
 
-def generar_texto(texto, velocidad= 0.02):
+def generar_texto(texto, velocidad=0.02):
     for caracter in texto:
-        sys.stdout.write(caracter)
-        sys.stdout.flush()
-        tm.sleep(velocidad)
-    print()
+        if keyboard.is_pressed('space'):
+            sys.stdout.write(caracter)
+            sys.stdout.flush()
+            tm.sleep(0.00000000001)  # Tiempo muy rápido para que sea imperceptible
+        else:
+            sys.stdout.write(caracter)
+            sys.stdout.flush()
+            tm.sleep(velocidad)
 
 def ac_evade(actor, vs):
     probabilidad_evade = actor['agi'] - vs['agi']  # Comparar agilidad entre ambos
@@ -55,7 +59,7 @@ def calcular_daño(actor, vs):
 
 def ac_ataque(actor, vs):
     # Calcula el daño potencial
-    daño = calcular_daño(actor, vs)
+    daño = calcular_daño(actor, vs) // 1
     
     if daño is None:  # Verificación extra para asegurar que no sea None
         daño = 0
@@ -167,8 +171,6 @@ def acc(heroe, enemigo):
         for habilidad in heroe['habilidades']:
             print(habilidad)
         user = input()
-        print(f"input {user}")
-        print(f"heroe {heroe['habilidades']}")
         if user.lower() in heroe['habilidades']:
             ac_magia(heroe, enemigo, user)
         else:
@@ -207,11 +209,12 @@ def batalla(heroe, enemigo):
         interfaz(heroe, enemigo)
         acc(heroe, enemigo)
         tm.sleep(1.5)
-        #os.system('cls')
+        os.system('cls')
         interfaz(heroe, enemigo)
         acc_ai(enemigo, heroe)
         tm.sleep(1.5)
-        #os.system('cls')
+        os.system('cls')
+        print('\n')
 
     if enemigo['hp'] <= 0:
         generar_texto(f"{enemigo['nombre']} ha sido derrotado!")
