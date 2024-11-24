@@ -36,7 +36,7 @@ deberá batallar para finalmente llegar a derrotar al tirano Gyanavall.
 
 ## 👌 Pasos a seguir para probar el trabajo practico:
 
-1- Instalar python y Visual Studio Code.
+1- Instalar python y Visual Studio Code. Dependencias: json, keyboard
 
 2- Clonar Repositorio
 
@@ -50,9 +50,9 @@ deberá batallar para finalmente llegar a derrotar al tirano Gyanavall.
 
 ## 🎮Instrucciones del Juego 
 
-En primera instancia, el juego ofrece 4 _clases_ de personajes para elegir: Aragorn, Legolas, Morgana y Gandalf.
+En primera instancia, el juego ofrece 4 _clases_ de personajes para elegir: Alballus, Aiken, Morgana, Udnorn
 
- Cada uno de ellos tiene habilidades distintas para desempeñar un rol unico, Guerrero, Arquero, Mago y Healer. 
+ Cada uno de ellos tiene habilidades distintas para desempeñar un rol unico, Guerrero, Arquero, Mago y Sanador. 
  
  A su vez, tienen estadisticas base repartidas de forma acorde al rol que cumple cada _clase_.
  
