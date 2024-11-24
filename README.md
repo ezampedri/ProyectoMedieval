@@ -93,7 +93,7 @@ Cada uno de ellos tiene habilidades distintas para desempeñar un rol unico, Gue
  Una vez que chocas con una calavera (enemigo) comienza la batalla. El objetivo es que uses tus habilidades para atacar al enemigo y dejarle la vida en cero.
  Cuando lo derrotes, avanzas en el tablero.
  
-<img width="464" alt="imagen (3)" src="https://github.com/user-attachments/assets/27091f29-aada-4dac-a2ae-15305b3f9f06">
+![imagen](https://github.com/user-attachments/assets/b1255828-b60f-4058-b967-b19eb16235aa)
 
 
  ⭐ Desafios rompecabezas para avanzar de nivel en tablero
@@ -101,6 +101,11 @@ Cada uno de ellos tiene habilidades distintas para desempeñar un rol unico, Gue
  Este desafio es una mini cerradura. El jugador debe descifrar como ir de un punto del cuadrado, hasta el otro extremo inferior derecho del cuadrado, a tras de las flechas.
 
 <img width="464" alt="imagen (4)" src="https://github.com/user-attachments/assets/bd515938-6166-482a-9ac7-a9dded41a0e9">
+
+ 
+ ⭐ Perdiste la batalla?
+
+<img width="464" alt="imagen (1)" src="https://github.com/user-attachments/assets/9a4fcc86-83fd-4813-840d-1279956aa4d2">
 
  
  
