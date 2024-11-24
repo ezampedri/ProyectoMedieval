@@ -91,9 +91,9 @@ def interfaz(heroe, enemigo):
     print("="*42)
     print(f"{heroe['nombre']:^20} | {enemigo['nombre']:^20}")
     print("-" * 42)
-    print(f"HP: {heroe['hp']:<17} | HP: {enemigo['hp']:<20}")
-    print(f"MP: {heroe['mp']:<17} | MP: {enemigo.get('mp', 'N/A'):<20}")
-    print("===================================")
+    print(f"HP: {heroe['hp']:<17}| HP: {enemigo['hp']:<20}")
+    print(f"MP: {heroe['mp']:<17}| MP: {enemigo.get('mp', 'N/A'):<20}")
+    print("==========================================")
 
 def escape(heroe):
     escapada = suerte.tirada((suerte.suerte // 2) + heroe['agi'])
