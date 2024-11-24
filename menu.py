@@ -34,6 +34,7 @@ with open('assets/intro.txt', 'r', encoding='utf-8') as file:
 # Punto de entrada al juego
 def main():
     while True:
+        os.system('cls')
         imprimir_portada()
         try:
             print()

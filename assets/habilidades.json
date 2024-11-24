@@ -1,13 +1,13 @@
 {
     "habilidades": [
       {
-        "nombre": "Rejuvenecer",
+        "nombre": "curar",
         "descripcion": "Restañe la carne y sana los dolores, lo que las farmacéuticas no quieren que sepas.",
         "atk": 1.5,
         "cost": 5
       },
       {
-        "nombre": "bola de fuego",
+        "nombre": "pyro",
         "descripcion": "Conjura una bola de fuego que abrasa el terreno a su paso, ideal para esa parrillada de domingo.",
         "atk": 1.7,
         "cost": 5
@@ -19,13 +19,13 @@
         "cost": 20
       },
       {
-        "nombre": "Corte Dimensional",
+        "nombre": "corte dimensional",
         "descripcion": "Blande su espada rápidamente creando un corte que rompe los silencios incómodos.",
         "atk": 7,
         "cost": 5
       },
       {
-        "nombre": "Disparo Penetrante",
+        "nombre": "disparo penetrante",
         "descripcion": "Carga una potente flecha con magia élfica para potenciar su efecto, no te interpongas en el camino.",
         "atk": 7,
         "cost": 5

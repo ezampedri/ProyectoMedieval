@@ -29,7 +29,7 @@ def generar_texto(texto, velocidad=0.02):
         if keyboard.is_pressed('space'):
             sys.stdout.write(caracter)
             sys.stdout.flush()
-            tm.sleep(0.00000000001)  # Tiempo muy rápido para que sea imperceptible
+            tm.sleep(0.0000000000000001)  # Tiempo muy rápido para que sea imperceptible
         else:
             sys.stdout.write(caracter)
             sys.stdout.flush()
@@ -45,30 +45,29 @@ def calcular_daño(actor, vs):
         daño_base = actor['atk'] * ((actor['arma'] / 10) + 1)
     else:
         daño_base = actor['atk']
-    
-    # Multiplicador de daño crítico
-    critico = r.choice([1.5, 1.75, 2.0])  # Valores posibles para ataque crítico
-    
-    if r.randint(0, 100) < actor['lk']:  # Probabilidad de crítico basada en la suerte
-        generar_texto(f"¡Ataque crítico de {actor['nombre']}!, ¡esto va a doler!",0.03)
-        daño_base *= critico  # Aplicamos el multiplicador de crítico
-    
     # Daño neto después de aplicar la defensa del enemigo
     daño_neto = max(0, daño_base - vs['def'])  # El daño no puede ser menor que 0
     return daño_neto
 
 def ac_ataque(actor, vs):
     # Calcula el daño potencial
-    daño = calcular_daño(actor, vs) // 1
-    
-    if daño is None:  # Verificación extra para asegurar que no sea None
-        daño = 0
+    critico = r.choice([1.5, 1.75, 2.0])  # Valores posibles para ataque crítico
+    daño = int(calcular_daño(actor, vs))  # Aseguramos que daño sea un entero
+    crit = False  # Inicializamos la variable crit
+
+    if r.randint(0, 100) < actor['lk']:  # Probabilidad de crítico basada en la suerte
+        generar_texto(f"¡Ataque crítico de {actor['nombre']}!, ¡esto va a doler!", 0.03)
+        daño *= critico  # Aplicamos el multiplicador de crítico
+        crit = True
+
     # Verifica si el oponente esquiva
     if ac_evade(vs, actor):
-        generar_texto(f"{vs['nombre']} esquivó el ataque de {actor['nombre']}!")
+        generar_texto(f"¡{vs['nombre']} esquivó el ataque de {actor['nombre']}!")
     else:
-        # Comprueba si el ataque conecta, basándose en la suerte del actor
-        if suerte.tirada(actor['lk'] + 50):  # Modifica la probabilidad de acierto
+        if crit:  # Si hubo crítico, mostrar el daño en pantalla
+            generar_texto(f"El ataque de {actor['nombre']} conectó e infligió {daño} de daño a {vs['nombre']}.", 0.03)
+            vs['hp'] -= daño  
+        elif suerte.tirada(actor['lk'] + 50):  # Modifica la probabilidad de acierto
             vs['hp'] -= daño  # Asegurarse que `daño` es un número válido
             generar_texto(f"El ataque de {actor['nombre']} conectó e infligió {daño} de daño a {vs['nombre']}.")
         else:
@@ -79,8 +78,11 @@ def ac_magia(actor, vs, habilidad):
         data = json.load(file)['habilidades']
     for m in data:
         if m['nombre'] == habilidad:
+            #if actor['mp'] < m['costo']:
+                #generar_texto(f"{actor['nombre']} no tiene suficiente MP para lanzar {habilidad}")
             daño = m['atk'] * actor['mag']
             vs['hp'] -= daño
+            #actor['mp'] -= m['costo']
             generar_texto(f"{actor['nombre']} lanzó {habilidad} sobre {vs['nombre']} por un total de {daño} de hp")
         else:
             ("No se reconoce la habilidad")
@@ -162,19 +164,17 @@ def acc(heroe, enemigo):
     print(f"Habilidades")
     print(f"Evadir")
     print(f"Escapar")
-    generar_texto("¡Toma el destino en tus manos!")
+    generar_texto(f"{Fore.RED}¡Toma el destino en tus manos!{Style.RESET_ALL}")
+    print('\n')
     user = input().lower()
     if user == "atacar":
         ac_ataque(heroe, enemigo)
     elif user == "habilidades":
-        print(f"Elige una habilidad!")
+        print(f"{Fore.RED}¡Elige una habilidad!{Style.RESET_ALL}")
         for habilidad in heroe['habilidades']:
             print(habilidad)
         user = input()
-        if user.lower() in heroe['habilidades']:
-            ac_magia(heroe, enemigo, user)
-        else:
-            generar_texto(f'Ese conjuro no forma parte del conocimiento de {heroe["nombre"]}')
+        ac_magia(heroe, enemigo, user)
     elif user == "evadir":
         generar_texto(f'{heroe["nombre"]} ¡se prepara para evadir el próximo ataque!')
         heroe['agi'] *= 2  # Dobla la agilidad temporalmente
@@ -218,6 +218,7 @@ def batalla(heroe, enemigo):
 
     if enemigo['hp'] <= 0:
         generar_texto(f"{enemigo['nombre']} ha sido derrotado!")
+        print('\n')
         recompensa = {
             'victoria': True,
             'xp':r.randint(20, 70)
