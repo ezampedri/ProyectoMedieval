@@ -12,13 +12,13 @@
             "lk": 10,
             "exp": 0,
             "habilidades": [
-                "rejuvenecer", "bola de fuego"
+                "rejuvenecer", "pyro"
             ]
         },
         "Aiken": {
             "nombre": "Aiken",
             "clase": "Guerrero",
-            "hp": 350,
+            "hp": 300,
             "mp": 25,
             "atk": 45,
             "mag": 5,
@@ -27,8 +27,7 @@
             "lk": 10,
             "exp": 0,
             "habilidades": [
-                "Corte Dimensional",
-                "Disparo Penetrante"
+                "corte dimensional", "curar"
             ]
         },
         "Morgana": {
@@ -36,14 +35,14 @@
             "clase": "Maga",
             "hp": 250,
             "mp": 50,
-            "atk": 5,
+            "atk": 20,
             "mag": 50,
             "agi": 90,
             "def": 5,
             "lk": 20,
             "exp": 0,
             "habilidades": [
-                "bola de fuego", "cataclismo"
+                "pyro", "cataclismo"
             ]
         },
         "Udnorn": {

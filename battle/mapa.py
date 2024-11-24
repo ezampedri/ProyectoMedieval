@@ -98,6 +98,7 @@ def armadoDeMapa(filas, columnas, nivel):
 
 #Imprimir el mapa
 def imprimirMapa(mapa, posicionHeroe):
+    print('\n')
     for i, fila in enumerate(mapa):
         for j, columna in enumerate(fila):
             if (i, j) == posicionHeroe:
@@ -116,19 +117,19 @@ def controlDePosicion(mapa, posicion, nivel):
             if nivel == 1:
                 enemigo = funciones_champion.cargar_enemigo('Goblin')
                 print()
-                battle.generar_texto("¡Un Goblin escurridizo aparece de entre las sombras! Su risa burlona resuena mientras te prepara una trampa")
+                battle.generar_texto("¡Un Goblin escurridizo aparece de entre las sombras! Su risa burlona resuena mientras te prepara una trampa \n")
             elif nivel == 2:
                 enemigo = funciones_champion.cargar_enemigo('Orco')
                 print()
-                battle.generar_texto("Un imponente Orco emerge del bosque, blandiendo su enorme hacha con una mirada desafiante. ¡Prepárate para una batalla brutal contra este coloso!")
+                battle.generar_texto("Un imponente Orco emerge del bosque, blandiendo su enorme hacha con una mirada desafiante. ¡Prepárate para una batalla brutal contra este coloso!\n")
             elif nivel == 3:
                 enemigo = funciones_champion.cargar_enemigo('Troll')
                 print()
-                battle.generar_texto("El suelo tiembla bajo tus pies mientras un Troll gigantesco avanza lentamente hacia ti. Su gruñido profundo anuncia un combate feroz. ")
+                battle.generar_texto("El suelo tiembla bajo tus pies mientras un Troll gigantesco avanza lentamente hacia ti. Su gruñido profundo anuncia un combate feroz. \n")
             elif nivel == 4:
                 enemigo = funciones_champion.cargar_enemigo('Drafnakk, Tirano de Gyanavall')
                 print()
-                battle.generar_texto("El suelo tiembla y un rugido estremecedor rompe el silencio. ¡Has desafiado a Drafnakk, el Tirano de Gyanavall! No habrá escapatoria... Esta será la batalla de tu vida.")
+                battle.generar_texto("El suelo tiembla y un rugido estremecedor rompe el silencio. ¡Has desafiado a Drafnakk, el Tirano de Gyanavall! No habrá escapatoria... Esta será la batalla de tu vida. \n")
 
             global heroeGuardado
             recompensa = battle.batalla(heroeGuardado, enemigo)
@@ -360,9 +361,9 @@ def progreso(recompensa):
     global heroeGuardado
     heroeGuardado['exp'] += recompensa['xp']
     if heroeGuardado['exp'] > 100:
-        battle.generar_texto('Sientes una gran fuerza aflorando desde tu interior')
+        battle.generar_texto('Sientes una gran fuerza aflorando desde tu interior\n')
         heroeGuardado['hp'] = int(heroeGuardado['hp'] * 1.15)
-        heroeGuardado['mp'] = int(heroeGuardado['mp'] * 1.20)
+        heroeGuardado['mp'] += 30
         heroeGuardado['atk'] = int(heroeGuardado['atk'] * 1.10)
         heroeGuardado['mag'] = int(heroeGuardado['mag'] * 1.10)
         heroeGuardado['agi'] = int(heroeGuardado['agi'] * 1.10)
