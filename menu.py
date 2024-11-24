@@ -1,16 +1,21 @@
 from battle import mapa
 from battle import partida
 from assets import funciones_champion
+import keyboard
 import os
 import sys
 import time as tm
 
-def generar_texto(texto, velocidad= 0.02):
+def generar_texto(texto, velocidad=0.02):
     for caracter in texto:
-        sys.stdout.write(caracter)
-        sys.stdout.flush()
-        tm.sleep(velocidad)
-    print()
+        if keyboard.is_pressed('space'):
+            sys.stdout.write(caracter)
+            sys.stdout.flush()
+            tm.sleep(0.000000001)  # Tiempo muy rápido para que sea imperceptible
+        else:
+            sys.stdout.write(caracter)
+            sys.stdout.flush()
+            tm.sleep(velocidad)
 
 
 def imprimir_portada():
@@ -19,8 +24,11 @@ def imprimir_portada():
             print(line, end='')
 
 
-with open('assets/tutorial.txt', 'r') as file:
+with open('assets/tutorial.txt', 'r', encoding='utf-8') as file:
     tutorial = file.read()
+
+with open('assets/intro.txt', 'r', encoding='utf-8') as file:
+    intro = file.read()
 
 
 # Punto de entrada al juego
@@ -34,6 +42,9 @@ def main():
 
             if opcion == 1:
                 heroe = funciones_champion.menu()
+                generar_texto(intro)
+                print('\n')
+                input('Presione enter para continuar...')
 
                 if heroe != None:
                     mapa.iniciarMapa(1, heroe, False)

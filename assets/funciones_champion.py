@@ -64,16 +64,16 @@ def menu():
         print('-               Proyecto Medieval                 -')
         print('---------------------------------------------------')
         print("Seleccionar Heroe:")
-        print("1. \U0001F9D9 Gandalf - Curador")
-        print("Habilidades: Rejuvenecer")
+        print("1. \U0001F9D9 Alballus - Mago de Luz")
+        print("Habilidades: Rejuvenecer, Bola de Fuego")
         print('---------------------------------------------------')
-        print("2. \U0001F9D9 Aragorn - Guerrero")
+        print("2. \U0001F9D9 Aiken - Guerrero")
         print("Habilidades: Corte Dimensional y Disparo Penetrante")
         print('---------------------------------------------------')
-        print("3. \U0001F9D9 Morgana - Maga")
-        print("Habilidades: Bola de fuego")
+        print("3. \U0001F9D9 Morgana - Maga Oscura")
+        print("Habilidades: Bola de fuego, Cataclismo")
         print('---------------------------------------------------')
-        print("4. \U0001F9D9 Legolas - Arquero")
+        print("4. \U0001F9D9 Udnorn- Arquero")
         print("Habilidades: Corte Dimensional")
         print('---------------------------------------------------')
         print("5. Salir")
@@ -81,16 +81,16 @@ def menu():
         opcion = int(input("Ingrese opcion: "))
 
         if opcion == 1:
-            campeon = seleccionarHeroe('Gandalf')
+            campeon = seleccionarHeroe('Alballus')
             bandera=False
         elif opcion == 2:
-            campeon = seleccionarHeroe('Aragorn')
+            campeon = seleccionarHeroe('Aiken')
             bandera=False
         elif opcion == 3:
             campeon = seleccionarHeroe('Morgana')
             bandera=False
         elif opcion == 4:
-            campeon = seleccionarHeroe('Legolas')
+            campeon = seleccionarHeroe('Udnorn')
             bandera=False
         elif opcion == 5:
             print("Saliendo del programa...")

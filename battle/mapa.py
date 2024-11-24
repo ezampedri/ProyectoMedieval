@@ -360,20 +360,12 @@ def progreso(recompensa):
     global heroeGuardado
     heroeGuardado['exp'] += recompensa['xp']
     if heroeGuardado['exp'] > 100:
-        battle.generar_texto('Sientes una gran fuerza aflorando desde tu interior'),
-        heroeGuardado['hp'] *= 1.15
-        heroeGuardado['hp'] // 1
-        heroeGuardado['mp'] *= 1.20
-        heroeGuardado['mp'] // 1
-        heroeGuardado['atk'] *=1.10
-        heroeGuardado['atk'] // 1
-        heroeGuardado['mag'] *=1.10
-        heroeGuardado['mag'] // 1
-        heroeGuardado['agi'] *=1.10
-        heroeGuardado['agi'] // 1
-        heroeGuardado['def'] *=1.10
-        heroeGuardado['def'] // 1
-        heroeGuardado['lk'] *=1.10
-        heroeGuardado['lk'] // 1
-        heroeGuardado['def'] *=1.10
-        heroeGuardado['def'] // 1
+        battle.generar_texto('Sientes una gran fuerza aflorando desde tu interior')
+        heroeGuardado['hp'] = int(heroeGuardado['hp'] * 1.15)
+        heroeGuardado['mp'] = int(heroeGuardado['mp'] * 1.20)
+        heroeGuardado['atk'] = int(heroeGuardado['atk'] * 1.10)
+        heroeGuardado['mag'] = int(heroeGuardado['mag'] * 1.10)
+        heroeGuardado['agi'] = int(heroeGuardado['agi'] * 1.10)
+        heroeGuardado['def'] = int(heroeGuardado['def'] * 1.10)
+        heroeGuardado['lk'] = int(heroeGuardado['lk'] * 1.10)
+        heroeGuardado['exp'] = 0  # Resetear la experiencia después de subir de nivel
