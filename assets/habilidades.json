@@ -22,7 +22,7 @@
         "nombre": "corte dimensional",
         "descripcion": "Blande su espada rápidamente creando un corte que rompe los silencios incómodos.",
         "atk": 7,
-        "cost": 5
+        "cost": 15
       },
       {
         "nombre": "disparo penetrante",

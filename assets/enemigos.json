@@ -1,42 +1,42 @@
 {
     "enemigos": {
-        "Goblin": {
-            "nombre": "Goblin",
-            "hp": 40,
+        "Goblin Travieso": {
+            "nombre": "Goblin Travieso",
+            "hp": 90,
             "mp": 20,
-            "atk": 20,
-            "mag": 20,
-            "agi": 20,
+            "atk": 30,
+            "mag": 10,
+            "agi": 5,
             "def": 5,
-            "lk": 20,
-            "exp": 100,
+            "lk": 30,
+            "exp": 30,
             "habilidades": [
             ]
         },
-        "Orco": {
-            "nombre": "Orco",
-            "hp": 100,
+        "Orco Guardian": {
+            "nombre": "Orco Guardian",
+            "hp": 130,
             "mp": 20,
             "atk": 50,
             "mag": 20,
             "agi": 30,
             "def": 20,
             "lk": 20,
-            "exp": 20,
+            "exp": 40,
             "habilidades": [
             ]
         },
-        "Troll": {
-            "nombre": "Troll",
+        "Troll Quejumbroso": {
+            "nombre": "Troll Quejumbroso",
             "hp": 200,
             "mp": 30,
-            "atk": 30,
-            "mag": 25,
+            "atk": 40,
+            "mag": 10,
             "agi": 35,
             "def": 30,
-            "lk": 25,
+            "lk": 30,
             "exp": 50,
-            "habilidades": [
+            "habilidades": [ "cataclismo"
             ]
         },
         "Drafnakk, Tirano de Gyanavall": {
@@ -47,7 +47,7 @@
             "mag": 40,
             "agi": 40,
             "def": 40,
-            "lk": 35,
+            "lk": 20,
             "exp": 20,
             "habilidades": [
                 "curar"

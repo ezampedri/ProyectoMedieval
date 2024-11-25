@@ -120,15 +120,15 @@ def controlDePosicion(mapa, posicion, nivel):
     try:
         if mapa[posicion[0]][posicion[1]] == '\U0001F480':
             if nivel == 1:
-                enemigo = funciones_champion.cargar_enemigo('Goblin')
+                enemigo = funciones_champion.cargar_enemigo('Goblin Travieso')
                 print()
                 battle.generar_texto("¡Un Goblin escurridizo aparece de entre las sombras! Su risa burlona resuena mientras te prepara una trampa \n")
             elif nivel == 2:
-                enemigo = funciones_champion.cargar_enemigo('Orco')
+                enemigo = funciones_champion.cargar_enemigo('Orco Guardian')
                 print()
                 battle.generar_texto("Un imponente Orco emerge del bosque, blandiendo su enorme hacha con una mirada desafiante. ¡Prepárate para una batalla brutal contra este coloso!\n")
             elif nivel == 3:
-                enemigo = funciones_champion.cargar_enemigo('Troll')
+                enemigo = funciones_champion.cargar_enemigo('Troll Quejumbroso')
                 print()
                 battle.generar_texto("El suelo tiembla bajo tus pies mientras un Troll gigantesco avanza lentamente hacia ti. Su gruñido profundo anuncia un combate feroz. \n")
             elif nivel == 4:
