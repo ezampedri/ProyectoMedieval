@@ -4,6 +4,7 @@ from battle import suerte
 from battle.mapa import armadoDeMapa, movimientoHeroe, controlDePosicion, imprimirMapa
 from battle.battle import calcular_daño, ac_evade, batalla
 from assets import funciones_champion
+from funciones_champion import curarse
 
 heroeGuardado = {
     "nombre": 'Vincent',
@@ -117,6 +118,10 @@ def test_batalla_recompensa_victoria():
     assert recompensa['victoria'] == True
     assert 20 <= recompensa['xp'] <= 70  # XP should be within the expected range
 
-
+def test_curarse():
+    enemigo = funciones_champion.cargar_enemigo('Goblin')
+    assert enemigo is not None
+    assert funciones_champion.curarse('Goblin', 0) == 60
+    assert funciones_champion.curarse('Goblin', 50) == 110
 
 
